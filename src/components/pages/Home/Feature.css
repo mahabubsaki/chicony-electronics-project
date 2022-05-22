@@ -52,6 +52,7 @@ span .icon {
   -webkit-transition: all 0.5s ease 0;
   transition: all 0.5s ease 0;
   transition: all 0.5s ease 0s;
+  cursor: pointer;
 }
 .item:hover {
   background: #f91942;

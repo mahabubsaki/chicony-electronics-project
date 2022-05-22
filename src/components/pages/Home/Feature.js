@@ -4,7 +4,8 @@ import { BsGlobe } from 'react-icons/bs'
 import { AiTwotoneSecurityScan } from 'react-icons/ai'
 import { BiSupport } from 'react-icons/bi'
 import { GiReceiveMoney } from 'react-icons/gi'
-import { FaShippingFast, FaGlobeAsia } from 'react-icons/fa'
+import { FaShippingFast } from 'react-icons/fa'
+import { FcGlobe } from 'react-icons/fc'
 
 const Feature = () => {
     return (
@@ -51,7 +52,7 @@ const Feature = () => {
                 </div>
                 <div className="item">
                     <div className="flex justify-center">
-                        <span className="icon six flex justify-center items-center"><FaGlobeAsia></FaGlobeAsia></span>
+                        <span className="icon six flex justify-center items-center"><FcGlobe></FcGlobe></span>
                     </div>
                     <h6>International Payment</h6>
                     <p>You can pay us with any kind of international payment credit card with stripe and it is very secure procedure.</p>

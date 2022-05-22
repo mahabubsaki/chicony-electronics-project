@@ -10,12 +10,12 @@ import Blogs from './components/pages/Blogs/Blogs';
 import Portfolio from './components/pages/Portfolio/Portfolio';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import Orders from './components/pages/Dashboard/Orders';
-import Review from './components/pages/Dashboard/Review';
 import Profile from './components/pages/Dashboard/Profile';
 import ManageOrders from './components/pages/Dashboard/ManageOrders';
 import ManageUsers from './components/pages/Dashboard/ManageUsers';
 import ManageProducts from './components/pages/Dashboard/ManageProducts';
 import AddProduct from './components/pages/Dashboard/AddProduct';
+import AddReview from './components/pages/Dashboard/AddReview';
 function App() {
   return (
     <div className="App">
@@ -31,7 +31,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<Profile></Profile>}></Route>
           <Route path="orders" element={<Orders></Orders>}></Route>
-          <Route path="review" element={<Review></Review>}></Route>
+          <Route path="review" element={<AddReview></AddReview>}></Route>
           <Route path="manage-orders" element={<ManageOrders></ManageOrders>}></Route>
           <Route path="manage-users" element={<ManageUsers></ManageUsers>}></Route>
           <Route path="manage-products" element={<ManageProducts></ManageProducts>}></Route>

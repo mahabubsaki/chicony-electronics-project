@@ -8,7 +8,7 @@ const Banner = () => {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Welcome to Chicony Electronics</h1>
                     <p className="mb-5">We manufacture one of the best desktop parts in this area. Inspiration and innovation every week. Our customer review is maximum time positive and they get their order on time. Shipping under 3 days after you complete any purchase.</p>
-                    <button className="btn btn-error">Checkout Products</button>
+                    <button className="btn btn-error"><a href="#product-div">Checkout Products</a></button>
                 </div>
             </div>
         </div>
