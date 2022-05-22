@@ -1,13 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../../utilities/Loading';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const SingleProduct = () => {
+    const navigate = useNavigate()
+    const [user, loading] = useAuthState(auth)
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -24,13 +29,17 @@ const SingleProduct = () => {
             return await axios({
                 method: 'GET',
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                    email: user?.email
                 },
                 url: `http://localhost:5000/product?id=${productId}`
             })
         }
         catch (err) {
-            console.log(err);
+            navigate('/')
+            toast.error('Something Went Wrond', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     })
     const { img, name, available, id, minimum, price, description } = data?.data || {}
@@ -104,7 +113,7 @@ const SingleProduct = () => {
         setProcessing(false)
         reset()
     }
-    if (isLoading) {
+    if (isLoading || loading) {
         return <Loading></Loading>
     }
     return (
