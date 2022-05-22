@@ -7,15 +7,20 @@ const About = () => {
             <div className="w-4/5 text-center sm:w-1/2 mx-auto">
                 <h1 className="text-3xl">About Our Company</h1>
                 <p className="my-3">We Are a established company in this area for last 3 years. We have currently a lot of customers and many of them are repeat customers. Below showen our company's roadmap through year.</p>
-                <ul class="steps w-full">
-                    <li class="step step-primary">Established on 2019</li>
-                    <li class="step step-primary">Went online on 2020</li>
-                    <li class="step step-primary">Reached whole country on 2021</li>
-                    <li class="step">Became a international brand in 2023</li>
+                <ul className="steps w-full">
+                    <li className="step step-primary">Established on 2019</li>
+                    <li className="step step-primary">Went online on 2020</li>
+                    <li className="step step-primary">Reached whole country on 2021</li>
+                    <li className="step">Became a international brand in 2023</li>
                 </ul>
                 <div>
-                    <h1 className="text-center text-3xl">Company Address</h1>
+                    <h1 className="text-center text-3xl">Company Info</h1>
+                    <h1 className="text-xl font-bold">Find Us :</h1>
                     <address>Rd No. 12, Dhanmondi Lake, Dhanmondi, Dhaka-1207, Bangladesh</address>
+                    <h1 className="text-xl font-bold">Contact Us :</h1>
+                    <p>+99023434345</p>
+                    <h1 className="text-xl font-bold">Mail Us :</h1>
+                    <address>chicony@business.info</address>
                 </div>
             </div>
             <div className="w-full border-4 flex justify-center items-center sm:w-1/2">

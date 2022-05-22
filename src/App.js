@@ -16,6 +16,7 @@ import ManageUsers from './components/pages/Dashboard/ManageUsers';
 import ManageProducts from './components/pages/Dashboard/ManageProducts';
 import AddProduct from './components/pages/Dashboard/AddProduct';
 import AddReview from './components/pages/Dashboard/AddReview';
+import Footer from './components/shared/Footer';
 function App() {
   return (
     <div className="App">
@@ -38,6 +39,7 @@ function App() {
           <Route path="add-product" element={<AddProduct></AddProduct>}></Route>
         </Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }
