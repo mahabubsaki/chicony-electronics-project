@@ -36,8 +36,8 @@ const Summary = () => {
                 <div className="stat flex flex-col items-center justify-center">
                     <div className="stat-title">Products Sold</div>
                     <div className="stat-value"><MdProductionQuantityLimits></MdProductionQuantityLimits></div>
-                    <div className="stat-value"><CountUp end={370} duration={7} /></div>
-                    <div className="stat-desc">↗︎ 120(15%)</div>
+                    <div className="stat-value"><CountUp end={35000} duration={7} /></div>
+                    <div className="stat-desc">↗︎ 1200(15%)</div>
                 </div>
 
             </div>
