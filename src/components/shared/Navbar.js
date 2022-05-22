@@ -40,6 +40,7 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 md:hidden">
                         <li><Customlink to='/'>Home</Customlink></li>
+                        <li><Customlink to='/all-products'>All Products</Customlink></li>
                         <li><Customlink to='/blogs'>Blogs</Customlink></li>
                         <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
                         {user && <li><Link to='/dashboard'>Dashboard</Link></li>}
@@ -54,6 +55,7 @@ const Navbar = () => {
             <div className="navbar-center hidden md:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><Customlink to='/'>Home</Customlink></li>
+                    <li><Customlink to='/all-products'>All Products</Customlink></li>
                     <li><Customlink to='/blogs'>Blogs</Customlink></li>
                     <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
                     {user && <li><Link to='/dashboard'>Dashboard</Link></li>}

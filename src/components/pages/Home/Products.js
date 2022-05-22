@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../../utilities/Loading';
 import Product from './Product';
 
 const Products = () => {
-    const { data, isLoading } = useQuery('products', async () => {
+    const navigate = useNavigate()
+    const { data, isLoading } = useQuery('home-products', async () => {
         return await axios({
             method: 'GET',
             url: 'http://localhost:5000/all-products'
@@ -25,6 +27,7 @@ const Products = () => {
                     ></Product>)
                 }
             </div>
+            <button className="block btn btn-info my-4 mx-auto" onClick={() => navigate('/all-products')}>See More</button>
         </div>
     );
 };

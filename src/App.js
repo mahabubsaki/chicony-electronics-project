@@ -21,6 +21,7 @@ import SingleProduct from './components/pages/Blogs/SingleProduct.js/SingleProdu
 import RequireAuth from './components/utilities/RequireAuth';
 import RequireAdmin from './components/utilities/RequireAdmin';
 import RequireUser from './components/utilities/RequireUser';
+import AllProducts from './components/pages/AllProducts/AllProducts';
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
+        <Route path="/all-products" element={<AllProducts></AllProducts>}></Route>
         <Route path="/product/:productId" element={
           <RequireAuth>
             <SingleProduct></SingleProduct>
