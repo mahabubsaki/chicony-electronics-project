@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Customlink from '../utilities/Customlink';
 import { RiMenu3Line } from 'react-icons/ri'
 
 const Navbar = () => {
+    const { pathname } = useLocation()
     return (
         <div className="navbar bg-warning">
             <div className="navbar-start">
@@ -32,9 +33,12 @@ const Navbar = () => {
                     <li><Link to='/dashboard'>Dashboard</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end lg:hidden">
-                <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button"><RiMenu3Line className='text-xl'></RiMenu3Line></label>
-            </div>
+            {
+                pathname.includes('/dashboard') &&
+                <div className="navbar-end lg:hidden">
+                    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button"><RiMenu3Line className='text-xl'></RiMenu3Line></label>
+                </div>
+            }
         </div>
     );
 };
