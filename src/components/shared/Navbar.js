@@ -2,9 +2,35 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Customlink from '../utilities/Customlink';
 import { RiMenu3Line } from 'react-icons/ri'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../firebase.init';
+import Loading from '../utilities/Loading';
+import { signOut } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+    const [user, loading] = useAuthState(auth)
     const { pathname } = useLocation()
+    const handleSignOut = () => {
+        Swal.fire({
+            text: 'Are you sure you want to sign out?',
+            icon: 'question',
+            title: "SignOut",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.value) {
+                localStorage.removeItem('access_token')
+                signOut(auth)
+            }
+        });
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className="navbar bg-warning">
             <div className="navbar-start">
@@ -14,11 +40,13 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 md:hidden">
                         <li><Customlink to='/'>Home</Customlink></li>
-                        <li><Customlink to='/login'>Login</Customlink></li>
-                        <li><Customlink to='/register'>Register</Customlink></li>
                         <li><Customlink to='/blogs'>Blogs</Customlink></li>
                         <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
-                        <li><Customlink to='/dashboard'>Dashboard</Customlink></li>
+                        <li><Link to='/dashboard'>Dashboard</Link></li>
+                        {!user ? <>
+                            <li><Customlink to='/login'>Login</Customlink></li>
+                            <li><Customlink to='/register'>Register</Customlink></li>
+                        </> : <li><button className="btn btn-error" onClick={handleSignOut}>Signout</button></li>}
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl">Chicony Electronics</Link>
@@ -26,11 +54,13 @@ const Navbar = () => {
             <div className="navbar-center hidden md:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><Customlink to='/'>Home</Customlink></li>
-                    <li><Customlink to='/login'>Login</Customlink></li>
-                    <li><Customlink to='/register'>Register</Customlink></li>
                     <li><Customlink to='/blogs'>Blogs</Customlink></li>
                     <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
                     <li><Link to='/dashboard'>Dashboard</Link></li>
+                    {!user ? <>
+                        <li><Customlink to='/login'>Login</Customlink></li>
+                        <li><Customlink to='/register'>Register</Customlink></li>
+                    </> : <li><button className="btn btn-error" onClick={handleSignOut}>Signout</button></li>}
                 </ul>
             </div>
             {
