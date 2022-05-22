@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="footer p-10 bg-base-200 text-base-content">
             <div className="text-center">
                 <img src="https://i.ibb.co/1RTGKs4/Chicony.png" alt="" width="50px" className='mx-auto' />
-                <p>Chicony Electronics<br></br>Providing reliable tech since 2019</p>
+                <p>Chicony Electronics<br></br>Providing reliable products since 2019</p>
             </div>
             <div>
                 <span className="footer-title">Services</span>
