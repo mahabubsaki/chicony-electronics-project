@@ -9,10 +9,12 @@ import Swal from 'sweetalert2';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { signOut } from 'firebase/auth';
+import useAdminCheck from '../../../hooks/useAdminCheck';
 
 const SingleProduct = () => {
     const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
+    const { admin } = useAdminCheck(user?.email)
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -46,6 +48,12 @@ const SingleProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = ({ quantity, phone, address }) => {
         setProcessing(true)
+        if (admin) {
+            toast.error('Admin can not place order', toastConfig)
+            reset()
+            setProcessing(false)
+            return
+        }
         if (isNaN(parseInt(quantity)) || quantity <= 0) {
             toast.error('Invalid Quantity Given', toastConfig)
             reset()

@@ -19,6 +19,8 @@ import AddReview from './components/pages/Dashboard/AddReview';
 import Footer from './components/shared/Footer';
 import SingleProduct from './components/pages/Blogs/SingleProduct.js/SingleProduct';
 import RequireAuth from './components/utilities/RequireAuth';
+import RequireAdmin from './components/utilities/RequireAdmin';
+import RequireUser from './components/utilities/RequireUser';
 function App() {
   return (
     <div className="App">
@@ -41,12 +43,14 @@ function App() {
           </RequireAuth>
         }>
           <Route index element={<Profile></Profile>}></Route>
-          <Route path="orders" element={<Orders></Orders>}></Route>
-          <Route path="review" element={<AddReview></AddReview>}></Route>
-          <Route path="manage-orders" element={<ManageOrders></ManageOrders>}></Route>
-          <Route path="manage-users" element={<ManageUsers></ManageUsers>}></Route>
-          <Route path="manage-products" element={<ManageProducts></ManageProducts>}></Route>
-          <Route path="add-product" element={<AddProduct></AddProduct>}></Route>
+          <Route path="orders" element={<RequireUser><Orders></Orders></RequireUser>}></Route>
+          <Route path="review" element={<RequireUser><AddReview></AddReview></RequireUser>}></Route>
+          <Route path="manage-orders" element={<RequireAdmin>
+            <ManageOrders></ManageOrders>
+          </RequireAdmin>}></Route>
+          <Route path="manage-users" element={<RequireAdmin><ManageUsers></ManageUsers></RequireAdmin>}></Route>
+          <Route path="manage-products" element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
+          <Route path="add-product" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
         </Route>
       </Routes>
       <Footer></Footer>
