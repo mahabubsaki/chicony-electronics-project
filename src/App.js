@@ -17,6 +17,7 @@ import ManageProducts from './components/pages/Dashboard/ManageProducts';
 import AddProduct from './components/pages/Dashboard/AddProduct';
 import AddReview from './components/pages/Dashboard/AddReview';
 import Footer from './components/shared/Footer';
+import SingleProduct from './components/pages/Blogs/SingleProduct.js/SingleProduct';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
+        <Route path="/product/:productId" element={<SingleProduct></SingleProduct>}></Route>
         <Route path="/dashboard" element={<Dashboard></Dashboard>}>
           <Route index element={<Profile></Profile>}></Route>
           <Route path="orders" element={<Orders></Orders>}></Route>

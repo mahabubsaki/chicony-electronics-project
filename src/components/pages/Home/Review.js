@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi'
-import { BsFillStarFill } from 'react-icons/bs'
+import Star from '../../utilities/Star';
 
 const Review = ({ review }) => {
     const { name, feedback, email, rating } = review;
@@ -12,10 +12,9 @@ const Review = ({ review }) => {
         }
         setRatingArray(empty)
     }, [rating])
-    console.log(ratingArray);
     return (
-        <div class="card bg-error text-primary-content">
-            <div class="card-body">
+        <div className="card bg-info text-primary-content">
+            <div className="card-body">
                 <div className="flex items-center mb-4">
                     <div className="flex justify-center">
                         <BiUserCircle className="text-3xl"></BiUserCircle>
@@ -28,7 +27,9 @@ const Review = ({ review }) => {
                 <div className="flex items-center">
                     <span>Rating : </span>
                     <div className="flex">
-                        {ratingArray?.map(each => <BsFillStarFill className='text-warning mx-1'></BsFillStarFill>)}
+                        {ratingArray?.map(index =>
+                            <Star key={index}></Star>
+                        )}
                     </div>
                 </div>
                 <p className='text-center'>{feedback}</p>
