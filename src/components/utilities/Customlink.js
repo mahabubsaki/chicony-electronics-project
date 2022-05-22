@@ -6,7 +6,7 @@ const Customlink = ({ children, to, ...props }) => {
     let match = useMatch({ path: resolved.pathname, end: true });
     return (
         <Link
-            style={{ textDecoration: match ? "underline" : "none" }}
+            style={{ backgroundColor: match && "#66CC8A" }}
             to={to}
             {...props}
         >
