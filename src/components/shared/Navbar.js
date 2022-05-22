@@ -7,15 +7,15 @@ const Navbar = () => {
         <div className="navbar bg-warning">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <label tabindex="0" className="btn btn-ghost md:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    <label tabIndex="0" className="btn btn-ghost md:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabindex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 md:hidden">
+                    <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 md:hidden">
                         <li><Customlink to='/login'>Login</Customlink></li>
                         <li><Customlink to='/register'>Register</Customlink></li>
                         <li><Customlink to='/blogs'>Blogs</Customlink></li>
                         <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
-                        <li><Customlink to='/dashboard'>Dashboard1.</Customlink></li>
+                        <li><Customlink to='/dashboard'>Dashboard</Customlink></li>
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl">Chicony Electronics</Link>
@@ -26,7 +26,7 @@ const Navbar = () => {
                     <li><Customlink to='/register'>Register</Customlink></li>
                     <li><Customlink to='/blogs'>Blogs</Customlink></li>
                     <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
-                    <li><Customlink to='/dashboard'>Dashboard1.</Customlink></li>
+                    <li><Customlink to='/dashboard'>Dashboard</Customlink></li>
                 </ul>
             </div>
             <div className="navbar-end">
