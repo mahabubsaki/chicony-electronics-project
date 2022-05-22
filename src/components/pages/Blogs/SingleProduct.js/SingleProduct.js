@@ -126,7 +126,7 @@ const SingleProduct = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" placeholder='Your Address' {...register("address")} className='w-full p-2 rounded-md border border-info' required /> <br />
                         <input type="tel" placeholder='Your Phone Number' {...register("phone")} className='w-full p-2 rounded-md border border-info my-2' required /> <br />
-                        <input type="number" placeholder='Enter Quntity' {...register("quantity")} className='w-full p-2 rounded-md border border-info mb-2' required /> <br />
+                        <input type="number" placeholder='Enter Quantity' {...register("quantity")} className='w-full p-2 rounded-md border border-info mb-2' required /> <br />
                         {processing &&
                             <div className="flex justify-center">
                                 <svg role="status" className="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

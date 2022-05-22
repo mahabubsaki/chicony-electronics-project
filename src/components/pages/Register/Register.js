@@ -139,7 +139,7 @@ const Register = () => {
     return (
         <div className="min-h-[500px] flex justify-center items-center">
             <div className="w-[385px] mx-auto testimonial-card p-7">
-                <h1 className="text-xl mb-9 text-center">Register</h1>
+                <h1 className="text-3xl font-bold mb-9 text-center">Register</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="w-full mb-3">
                         <label htmlFor="name">Full Name</label><br />
