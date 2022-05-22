@@ -177,7 +177,7 @@ const Register = () => {
                             {<span className="label-text-alt text-red-500">{errors.confirm?.message}</span>}
                         </label>
                     </div>
-                    <button className="text-sm text-white btn w-full bg-projectNeutral" type="submit">Sign Up</button>
+                    <button className="text-sm text-white btn w-full" type="submit">Sign Up</button>
                 </form>
                 {/* <label htmlFor="reset-modal" className="modal-button cursor-pointer" onClick={() => setResetModal(true)}>Forget Password?</label>
                 {resetModal && <ResetPasswordModal
@@ -185,11 +185,11 @@ const Register = () => {
                 ></ResetPasswordModal>} */}
                 <div className="flex flex-col w-full border-opacity-50">
                     <div className="grid card rounded-box place-items-center">
-                        <span className="text-xs">Already member? <Link to="/login" className="text-projectPrimary">Log In</Link></span>
+                        <span className="text-md">Already member? <Link to="/login" className="text-info">Log In</Link></span>
                     </div>
                     <div className="divider">OR</div>
                     <div>
-                        <button className="btn btn-outline w-full border border-[#3A4256] bg-white box-border text-projectAccent rounded-lg" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
+                        <button className="btn btn-outline w-full border border-[#3A4256] bg-white box-border rounded-lg" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
                     </div>
                 </div>
             </div>

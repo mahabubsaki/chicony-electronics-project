@@ -23,7 +23,7 @@ const Navbar = () => {
             cancelButtonText: 'No',
         }).then((result) => {
             if (result.value) {
-                localStorage.removeItem('access_token')
+                localStorage.removeItem('accessToken')
                 signOut(auth)
             }
         });
@@ -42,7 +42,7 @@ const Navbar = () => {
                         <li><Customlink to='/'>Home</Customlink></li>
                         <li><Customlink to='/blogs'>Blogs</Customlink></li>
                         <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
-                        <li><Link to='/dashboard'>Dashboard</Link></li>
+                        {user && <li><Link to='/dashboard'>Dashboard</Link></li>}
                         {!user ? <>
                             <li><Customlink to='/login'>Login</Customlink></li>
                             <li><Customlink to='/register'>Register</Customlink></li>
@@ -56,7 +56,7 @@ const Navbar = () => {
                     <li><Customlink to='/'>Home</Customlink></li>
                     <li><Customlink to='/blogs'>Blogs</Customlink></li>
                     <li><Customlink to='/portfolio'>Portfolio</Customlink></li>
-                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    {user && <li><Link to='/dashboard'>Dashboard</Link></li>}
                     {!user ? <>
                         <li><Customlink to='/login'>Login</Customlink></li>
                         <li><Customlink to='/register'>Register</Customlink></li>
