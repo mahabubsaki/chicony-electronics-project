@@ -1,9 +1,10 @@
+import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi'
 import Star from '../../utilities/Star';
 
 const Review = ({ review }) => {
-    const { name, feedback, email, rating } = review;
+    const { name, feedback, email, rating, date } = review;
     const [ratingArray, setRatingArray] = useState([])
     useEffect(() => {
         const empty = []
@@ -19,9 +20,9 @@ const Review = ({ review }) => {
                     <div className="flex justify-center">
                         <BiUserCircle className="text-3xl"></BiUserCircle>
                     </div>
-                    <div className="w-4/5 flex flex-col justify-center items-center">
+                    <div className="w-full flex flex-col justify-center items-center">
                         <p className="text-2xl">{name}</p>
-                        <p>Email : {email}</p>
+                        <p>{email}</p>
                     </div>
                 </div>
                 <div className="flex items-center">
@@ -32,6 +33,7 @@ const Review = ({ review }) => {
                         )}
                     </div>
                 </div>
+                <p className="text-center font-bold text-lg">Reviewed on : {format(new Date(date), 'PP')}</p>
                 <p className='text-center'>{feedback}</p>
             </div>
         </div>

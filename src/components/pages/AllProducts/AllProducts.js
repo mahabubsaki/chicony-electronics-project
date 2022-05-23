@@ -15,13 +15,16 @@ const AllProducts = () => {
         return <Loading></Loading>
     }
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 min-h-[500px] my-10">
-            {
-                data?.data?.map(product => <Product
-                    key={product._id}
-                    product={product}
-                ></Product>)
-            }
+        <div className="min-h-[500px] my-10">
+            <h1 className="text-3xl text-center">Total Products Available {data?.data?.length}</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                {
+                    data?.data?.map(product => <Product
+                        key={product._id}
+                        product={product}
+                    ></Product>)
+                }
+            </div>
         </div>
     );
 };

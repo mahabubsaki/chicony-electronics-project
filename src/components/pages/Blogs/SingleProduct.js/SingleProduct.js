@@ -143,6 +143,8 @@ const SingleProduct = () => {
                 </div>
                 <div className="w-4/5 mt-8">
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        <input type="email" value={user?.email} disabled readOnly className='w-full p-2 rounded-md border border-info mb-2 bg-[#d3cece]' />
+                        <input type="text" value={user?.displayName} disabled readOnly className='w-full p-2 rounded-md border border-info mb-2 bg-[#d3cece]' />
                         <input type="text" placeholder='Your Address' {...register("address")} className='w-full p-2 rounded-md border border-info' required /> <br />
                         <input type="tel" placeholder='Your Phone Number' {...register("phone")} className='w-full p-2 rounded-md border border-info my-2' required /> <br />
                         <input type="number" placeholder='Enter Quantity' {...register("quantity")} className='w-full p-2 rounded-md border border-info mb-2' required /> <br />
