@@ -17,7 +17,7 @@ import ManageProducts from './components/pages/Dashboard/ManageProducts';
 import AddProduct from './components/pages/Dashboard/AddProduct';
 import AddReview from './components/pages/Dashboard/AddReview';
 import Footer from './components/shared/Footer';
-import SingleProduct from './components/pages/Blogs/SingleProduct.js/SingleProduct';
+import SingleProduct from './components/pages/SingleProduct/SingleProduct';
 import RequireAuth from './components/utilities/RequireAuth';
 import RequireAdmin from './components/utilities/RequireAdmin';
 import RequireUser from './components/utilities/RequireUser';

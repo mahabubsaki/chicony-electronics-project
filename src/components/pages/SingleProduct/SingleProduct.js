@@ -2,15 +2,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import Loading from '../../../utilities/Loading';
+import Loading from '../../utilities/Loading';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
+import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
-import useAdminCheck from '../../../hooks/useAdminCheck';
-import NotFound from '../../NotFound/NotFound';
+import useAdminCheck from '../../hooks/useAdminCheck';
+import NotFound from '../NotFound/NotFound';
 
 const SingleProduct = () => {
     const navigate = useNavigate()
