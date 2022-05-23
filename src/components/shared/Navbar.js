@@ -22,7 +22,7 @@ const Navbar = () => {
             confirmButtonText: 'Yes',
             cancelButtonText: 'No',
         }).then((result) => {
-            if (result.value) {
+            if (result.isConfirmed) {
                 localStorage.removeItem('accessToken')
                 signOut(auth)
             }

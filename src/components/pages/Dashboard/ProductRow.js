@@ -3,12 +3,14 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { IoMdOptions } from 'react-icons/io'
 import { MdCancel } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 
 const ProductRow = ({ product, no, refetch }) => {
+    const navigate = useNavigate()
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -19,7 +21,7 @@ const ProductRow = ({ product, no, refetch }) => {
         progress: undefined,
     }
     const [user, loading] = useAuthState(auth)
-    const { quantity, cost, productImg, productName, status, _id, productId } = product;
+    const { quantity, cost, productImg, productName, status, _id, productId, orderId } = product;
     const handleCancelOrder = async () => {
         Swal.fire({
             text: 'Are you sure you want to cancel this order?',
@@ -78,7 +80,7 @@ const ProductRow = ({ product, no, refetch }) => {
             {
                 status === "Not Paid" && <td>
                     <div>
-                        <button className="btn btn-info block mx-auto">Pay Now</button><br />
+                        <button className="btn btn-info block mx-auto" onClick={() => navigate(`/payment/${orderId}`)}>Pay Now</button><br />
                         <p className="text-error text-center">Not Paid</p>
                     </div>
                 </td>
@@ -95,9 +97,9 @@ const ProductRow = ({ product, no, refetch }) => {
             }
             {
                 status === "Not Paid" && <td>
-                    <div class="dropdown dropdown-left">
-                        <label tabindex="0" class="btn m-1"><IoMdOptions></IoMdOptions></label>
-                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <div className="dropdown dropdown-left">
+                        <label tabIndex="0" className="btn m-1"><IoMdOptions></IoMdOptions></label>
+                        <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li className="text-error"><span onClick={handleCancelOrder}><MdCancel></MdCancel> Cancel Order</span></li>
                         </ul>
                     </div>

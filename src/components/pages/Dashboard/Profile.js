@@ -54,8 +54,8 @@ const Profile = () => {
                 <div className="flex justify-between items-center my-3">
                     <h1 className="text-3xl">Welcome to Your Profile</h1>
                     {avatar && <div className="avatar online">
-                        <div class="avatar">
-                            <div class="w-16 rounded-full">
+                        <div className="avatar">
+                            <div className="w-16 rounded-full">
                                 <img src={avatar} alt="avatar" />
                             </div>
                         </div>
