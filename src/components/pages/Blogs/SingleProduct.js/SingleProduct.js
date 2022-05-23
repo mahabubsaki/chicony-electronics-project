@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../../utilities/Loading';
@@ -10,10 +10,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { signOut } from 'firebase/auth';
 import useAdminCheck from '../../../hooks/useAdminCheck';
+import NotFound from '../../NotFound/NotFound';
 
 const SingleProduct = () => {
     const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
+    const [quantityInput, setQuantityInput] = useState(0)
     const { admin } = useAdminCheck(user?.email)
     const toastConfig = {
         position: "top-right",
@@ -45,8 +47,13 @@ const SingleProduct = () => {
         }
     })
     const { img, name, available, id, minimum, price, description } = data?.data || {}
+    useEffect(() => {
+        if (minimum) {
+            setQuantityInput(minimum)
+        }
+    }, [minimum])
     const { register, handleSubmit, reset } = useForm();
-    const onSubmit = ({ quantity, phone, address }) => {
+    const onSubmit = ({ phone, address }) => {
         setProcessing(true)
         if (admin) {
             toast.error('Admin can not place order', toastConfig)
@@ -54,26 +61,26 @@ const SingleProduct = () => {
             setProcessing(false)
             return
         }
-        if (isNaN(parseInt(quantity)) || quantity <= 0) {
+        if (isNaN(parseInt(quantityInput)) || quantityInput <= 0) {
             toast.error('Invalid Quantity Given', toastConfig)
             reset()
             setProcessing(false)
             return
         }
-        if (parseInt(quantity) < minimum) {
+        if (parseInt(quantityInput) < minimum) {
             toast.error(`You have to set the quantity minimum ${minimum} `, toastConfig)
             reset()
             setProcessing(false)
             return
         }
-        if (parseInt(quantity) > available) {
+        if (parseInt(quantityInput) > available) {
             toast.error(`You can't set the quantity more than ${available}`, toastConfig)
             setProcessing(false)
             reset()
             return
         }
         Swal.fire({
-            text: `Do you want order ${parseInt(quantity)} pieces ${name} for $${parseInt(quantity) * price}?`,
+            text: `Do you want order ${parseInt(quantityInput)} pieces ${name} for $${parseInt(quantityInput) * price}?`,
             icon: 'info',
             title: 'Your Order',
             showCancelButton: true,
@@ -95,14 +102,15 @@ const SingleProduct = () => {
                                 productId: id,
                                 phone: phone,
                                 address: address,
-                                quantity: parseInt(quantity),
-                                cost: parseInt(quantity) * price,
+                                quantity: parseInt(quantityInput),
+                                cost: parseInt(quantityInput) * price,
                                 orderId: Math.round(Math.random() * 100000000000).toString(16),
                                 email: user?.email,
                                 productName: name,
                                 productImg: img,
+                                status: 'Not Paid',
                             },
-                            url: `http://localhost:5000/add-order?current=${available - parseInt(quantity)}`
+                            url: `http://localhost:5000/add-order?current=${available - parseInt(quantityInput)}`
                         })
                         if (data.acknowledged) {
                             refetch()
@@ -128,6 +136,9 @@ const SingleProduct = () => {
         setProcessing(false)
         reset()
     }
+    if (!data?.data) {
+        return <NotFound></NotFound>
+    }
     if (isLoading || loading) {
         return <Loading></Loading>
     }
@@ -152,7 +163,7 @@ const SingleProduct = () => {
                         <input type="text" value={user?.displayName} disabled readOnly className='w-full p-2 rounded-md border border-info mb-2 bg-[#d3cece]' />
                         <input type="text" placeholder='Your Address' {...register("address")} className='w-full p-2 rounded-md border border-info' required /> <br />
                         <input type="tel" placeholder='Your Phone Number' {...register("phone")} className='w-full p-2 rounded-md border border-info my-2' required /> <br />
-                        <input type="number" placeholder='Enter Quantity' {...register("quantity")} className='w-full p-2 rounded-md border border-info mb-2' required /> <br />
+                        <input type="number" placeholder='Enter Quantity' className='w-full p-2 rounded-md border border-info mb-2' defaultValue={minimum} onChange={(e) => setQuantityInput(e.target.value)} required /> <br />
                         {processing &&
                             <div className="flex justify-center">
                                 <svg role="status" className="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
