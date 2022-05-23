@@ -22,11 +22,20 @@ import RequireAuth from './components/utilities/RequireAuth';
 import RequireAdmin from './components/utilities/RequireAdmin';
 import RequireUser from './components/utilities/RequireUser';
 import AllProducts from './components/pages/AllProducts/AllProducts';
+import auth from './components/firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import Loading from './components/utilities/Loading';
+import IsVarified from './components/shared/Isverified';
 function App() {
+  const [user, loading] = useAuthState(auth)
+  if (loading) {
+    return <Loading></Loading>
+  }
   return (
     <div className="App">
       <ToastContainer></ToastContainer>
       <Navbar></Navbar>
+      {(!user?.emailVerified && user?.uid) && <IsVarified></IsVarified>}
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Loading from '../../utilities/Loading';
 import auth from '../../firebase.init';
+import ResetPasswordModal from '../../shared/ResetPasswordModal';
 
 const Register = () => {
     const toastConfig = {
@@ -179,10 +180,10 @@ const Register = () => {
                     </div>
                     <button className="text-sm text-white btn w-full" type="submit">Sign Up</button>
                 </form>
-                {/* <label htmlFor="reset-modal" className="modal-button cursor-pointer" onClick={() => setResetModal(true)}>Forget Password?</label>
+                <label htmlFor="reset-modal" className="modal-button cursor-pointer" onClick={() => setResetModal(true)}>Forget Password?</label>
                 {resetModal && <ResetPasswordModal
                     setResetModal={setResetModal}
-                ></ResetPasswordModal>} */}
+                ></ResetPasswordModal>}
                 <div className="flex flex-col w-full border-opacity-50">
                     <div className="grid card rounded-box place-items-center">
                         <span className="text-md">Already member? <Link to="/login" className="text-info">Log In</Link></span>

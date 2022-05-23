@@ -4,6 +4,7 @@ import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import ResetPasswordModal from '../../shared/ResetPasswordModal';
 import Loading from '../../utilities/Loading';
 
 
@@ -124,10 +125,10 @@ const Login = () => {
                     </div>
                     <button className="text-sm text-white btn w-full" type="submit">Login</button>
                 </form>
-                {/* <label htmlFor="reset-modal" className="modal-button cursor-pointer" onClick={() => setResetModal(true)}>Forget Password?</label>
+                <label htmlFor="reset-modal" className="modal-button cursor-pointer" onClick={() => setResetModal(true)}>Forget Password?</label>
                 {resetModal && <ResetPasswordModal
                     setResetModal={setResetModal}
-                ></ResetPasswordModal>} */}
+                ></ResetPasswordModal>}
                 <div className="flex flex-col w-full border-opacity-50 mt-3">
                     <div className="grid card rounded-box place-items-center">
                         <span className="text-md">New to Chicony Electronics? <Link to="/register" className="text-info">Create new account</Link></span>
