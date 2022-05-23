@@ -99,7 +99,7 @@ const ProductRow = ({ product, no, refetch }) => {
             }
             {
                 status === "Shipped" && <td>
-                    <p className="text-primary font-bold text-center">Shipped</p>
+                    <p className="text-info font-bold text-center">Shipped</p>
                 </td>
             }
             {
