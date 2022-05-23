@@ -20,10 +20,12 @@ const Orders = () => {
             })
         }
         catch (err) {
-
+            // navigate('/')
+            // toast.error('Something Went Wrond', toastConfig)
+            // signOut(auth)
+            // localStorage.removeItem('accessToken')
         }
     })
-    console.log(data?.data);
     if (loading || isLoading) {
         return <Loading></Loading>
     }
@@ -38,7 +40,7 @@ const Orders = () => {
                             <th>Quantity</th>
                             <th>Cost</th>
                             <th className="text-center">Status</th>
-                            <th>Options</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
