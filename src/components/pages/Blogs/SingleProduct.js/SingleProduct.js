@@ -98,7 +98,9 @@ const SingleProduct = () => {
                                 quantity: parseInt(quantity),
                                 cost: parseInt(quantity) * price,
                                 orderId: Math.round(Math.random() * 100000000000).toString(16),
-                                email: user?.email
+                                email: user?.email,
+                                productName: name,
+                                productImg: img,
                             },
                             url: `http://localhost:5000/add-order?current=${available - parseInt(quantity)}`
                         })

@@ -45,7 +45,6 @@ const Profile = () => {
         }
     })
     const { email, name, avatar, education, location, phone, linkedin } = data?.data || {}
-    console.log(data?.data)
     if (loading || isLoading) {
         return <Loading></Loading>
     }
