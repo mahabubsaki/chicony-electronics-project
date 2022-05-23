@@ -22,7 +22,8 @@ const ProductRow = ({ product, no, refetch }) => {
         progress: undefined,
     }
     const [user, loading] = useAuthState(auth)
-    const { quantity, cost, productImg, productName, status, _id, productId, orderId } = product;
+    const { quantity, cost, productImg, productName, status, _id, productId, orderId, paymentId
+    } = product;
     const handleCancelOrder = async () => {
         Swal.fire({
             text: 'Are you sure you want to cancel this order?',
@@ -92,6 +93,8 @@ const ProductRow = ({ product, no, refetch }) => {
             {
                 status === "Paid" && <td>
                     <p className="text-primary text-center">Paid</p>
+                    <p className="text-center text-xs font-bold">Transaction Id: {paymentId
+                    }</p>
                 </td>
             }
             {
