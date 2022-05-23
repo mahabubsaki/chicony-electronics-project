@@ -14,8 +14,6 @@ const Reviews = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-
-    console.log(data?.data)
     return (
         <div className="mb-5">
             <h1 className="text-3xl text-center mb-5">Latest Reviews</h1>

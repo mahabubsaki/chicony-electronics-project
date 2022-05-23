@@ -1,13 +1,16 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 
 const AddReview = () => {
+    const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
     const [processing, setProcessing] = useState(false)
     const toastConfig = {
@@ -56,6 +59,10 @@ const AddReview = () => {
         }
         catch (err) {
             setProcessing(false)
+            navigate('/')
+            toast.error('Something Went Wrond', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     }
     if (loading) {

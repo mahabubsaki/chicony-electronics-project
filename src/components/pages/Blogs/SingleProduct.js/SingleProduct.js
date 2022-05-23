@@ -114,7 +114,10 @@ const SingleProduct = () => {
                     }
                     catch (err) {
                         setProcessing(false)
-                        console.log(err);
+                        navigate('/')
+                        toast.error('Something Went Wrond', toastConfig)
+                        signOut(auth)
+                        localStorage.removeItem('accessToken')
                     }
                 }
                 saveOrder()
