@@ -1,10 +1,76 @@
+import axios from 'axios';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { IoMdOptions } from 'react-icons/io'
+import { MdCancel } from 'react-icons/md'
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import auth from '../../firebase.init';
+import Loading from '../../utilities/Loading';
 
 
-const AdminProductsRow = ({ product, no }) => {
-    const { status, email, quantity, cost, productName
+const AdminProductsRow = ({ product, no, refetch }) => {
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
+    const [user, loading] = useAuthState(auth)
+    const { status, email, quantity, cost, productName, productId, _id
     } = product;
+    const handleCancelOrder = async () => {
+        Swal.fire({
+            text: 'Are you sure you want to cancel this order?',
+            icon: 'error',
+            title: "Cancel Order",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                try {
+                    const deleteProduct = async () => {
+                        const { data } = await axios({
+                            method: 'DELETE',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                                email: user?.email
+                            },
+                            data: {
+                                productId: productId,
+                                quantity: quantity,
+                            },
+                            url: `http://localhost:5000/admin-delete-order?id=${_id}`
+
+                        })
+                        if (data.acknowledged) {
+                            toast.success('Product cancelled successfully', toastConfig)
+                            refetch()
+                        }
+                        else {
+                            toast.error('Something went wrong', toastConfig)
+                        }
+                    }
+                    deleteProduct()
+                }
+                catch (err) {
+                    // navigate('/')
+                    // toast.error('Something Went Wrong', toastConfig)
+                    // signOut(auth)
+                    // localStorage.removeItem('accessToken')
+                }
+            }
+        })
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <tr>
             <th>{no}</th>
@@ -15,37 +81,17 @@ const AdminProductsRow = ({ product, no }) => {
             }</td>
             <td>{quantity} Pcs</td>
             <td>${cost}</td>
-            <td>ok</td>
-            <td>
-                <div className="dropdown dropdown-left">
-                    <label tabIndex="0" className="btn m-1"><IoMdOptions></IoMdOptions></label>
-                    <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li className="text-error"><span></span></li>
-                    </ul>
-                </div>
-            </td>
-            {/* {
-                status === "Not Paid" && <td>
-                    <div>
-                        <button className="btn btn-info block mx-auto" onClick={() => navigate(`/payment/${orderId}`)}>Pay Now</button><br />
-                        <p className="text-error text-center">Not Paid</p>
-                    </div>
-                </td>
+            {
+                status === "Not Paid" && <td className="text-error">{status}</td>
             }
             {
-                status === "Paid" && <td>
-                    <p className="text-primary text-center">Paid</p>
-                    <p className="text-center text-xs font-bold">Transaction Id: {paymentId
-                    }</p>
-                </td>
+                status === "Paid" && <td className="text-primary">Pending Shipping</td>
             }
             {
-                status === "Shipped" && <td>
-                    <p className="text-primary font-bold text-center">Shipped</p>
-                </td>
+                status === "Shipped" && <td className="text-info">{status}</td>
             }
             {
-                status === "Not Paid" && <td>
+                status !== "Shipped" && <td>
                     <div className="dropdown dropdown-left">
                         <label tabIndex="0" className="btn m-1"><IoMdOptions></IoMdOptions></label>
                         <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -53,7 +99,7 @@ const AdminProductsRow = ({ product, no }) => {
                         </ul>
                     </div>
                 </td>
-            } */}
+            }
         </tr>
     );
 };
