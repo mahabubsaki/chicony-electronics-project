@@ -9,7 +9,6 @@ import Loading from '../../utilities/Loading';
 const Dashboard = () => {
     const [user, loading] = useAuthState(auth)
     const { admin } = useAdminCheck(user?.email)
-    console.log(admin)
     if (loading) {
         return <Loading></Loading>
     }

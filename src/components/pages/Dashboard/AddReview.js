@@ -63,7 +63,7 @@ const AddReview = () => {
     }
     return (
         <div className="min-h-[500px] flex justify-center">
-            <div className="w-4/5 mx-auto">
+            <div className="w-full sm:w-4/5 mx-auto">
                 <h1 className="text-2xl text-center">Add A Review</h1>
                 <div className="flex items-center w-full justify-between my-4">
                     <p className="text-xl">Select A Rating: </p>
