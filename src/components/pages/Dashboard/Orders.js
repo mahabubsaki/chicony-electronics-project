@@ -1,13 +1,26 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 import ProductRow from './ProductRow';
 
 const Orders = () => {
     const [user, loading] = useAuthState(auth)
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
+    const navigate = useNavigate()
     const { data, isLoading, refetch } = useQuery(['orders', user], async () => {
         try {
             return await axios({
@@ -20,10 +33,10 @@ const Orders = () => {
             })
         }
         catch (err) {
-            // navigate('/')
-            // toast.error('Something Went Wrond', toastConfig)
-            // signOut(auth)
-            // localStorage.removeItem('accessToken')
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     })
     if (loading || isLoading) {

@@ -41,7 +41,7 @@ const SingleProduct = () => {
         }
         catch (err) {
             navigate('/')
-            toast.error('Something Went Wrond', toastConfig)
+            toast.error('Something Went Wrong', toastConfig)
             signOut(auth)
             localStorage.removeItem('accessToken')
         }
@@ -125,7 +125,7 @@ const SingleProduct = () => {
                     catch (err) {
                         setProcessing(false)
                         navigate('/')
-                        toast.error('Something Went Wrond', toastConfig)
+                        toast.error('Something Went Wrong', toastConfig)
                         signOut(auth)
                         localStorage.removeItem('accessToken')
                     }

@@ -1,14 +1,31 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
+import { loadStripe } from '@stripe/stripe-js';
 import NotFound from '../NotFound/NotFound';
+import {
+    Elements,
+} from '@stripe/react-stripe-js';
+import PaymentForm from './PaymentForm';
+import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
 
 const Payment = () => {
+    const [stripePromise, setStripePromise] = useState(() => loadStripe('pk_test_51L1169ERhNvrJqfb95HV9RKyiSyhJkiwMPJYAf2sSsVKGTedSm0qr1heEwq7sYvOIaxWlI0DrmorUQzk40ekn3Nh00Cfe6cxc8'))
     const navigate = useNavigate()
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
     const [user, loading] = useAuthState(auth)
     const { orderId } = useParams()
     const { data, isLoading } = useQuery(['order', orderId], async () => {
@@ -23,15 +40,13 @@ const Payment = () => {
             })
         }
         catch (err) {
-
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     })
-    const { status, productName, productImg, cost, phone, address, quantity } = data?.data || {}
-    useEffect(() => {
-        if (status !== 'Not Paid') {
-            navigate('/')
-        }
-    }, [status])
+    const { productName, productImg, cost, phone, address, quantity } = data?.data || {}
     if (!data?.data) {
         return <NotFound></NotFound>
     }
@@ -51,6 +66,13 @@ const Payment = () => {
                     <p className="text-lg">Address : {address}</p>
                     <p className="text-lg">Quantity : {quantity} pieces</p>
                     <p className="text-lg">Cost : ${cost}</p>
+                    <div className="w-full my-3">
+                        <Elements stripe={stripePromise}>
+                            <PaymentForm
+                                product={data?.data}
+                            ></PaymentForm>
+                        </Elements>
+                    </div>
                 </div>
             </div>
         </div>

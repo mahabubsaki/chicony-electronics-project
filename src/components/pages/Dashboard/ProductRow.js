@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { IoMdOptions } from 'react-icons/io'
@@ -60,7 +61,10 @@ const ProductRow = ({ product, no, refetch }) => {
                     deleteProduct()
                 }
                 catch (err) {
-
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         })
@@ -87,12 +91,12 @@ const ProductRow = ({ product, no, refetch }) => {
             }
             {
                 status === "Paid" && <td>
-                    <span className="text-primary">Paid</span>
+                    <p className="text-primary text-center">Paid</p>
                 </td>
             }
             {
                 status === "Shipped" && <td>
-                    <span className="text-primary font-bold">Shipper</span>
+                    <p className="text-primary font-bold text-center">Shipped</p>
                 </td>
             }
             {

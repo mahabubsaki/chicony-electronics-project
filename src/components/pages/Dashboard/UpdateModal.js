@@ -62,7 +62,7 @@ const UpdateModal = ({ setUpdateModal, refetch }) => {
             catch (err) {
                 setUpdateModal(false)
                 navigate('/')
-                toast.error('Something Went Wrond', toastConfig)
+                toast.error('Something Went Wrong', toastConfig)
                 signOut(auth)
                 localStorage.removeItem('accessToken')
             }
