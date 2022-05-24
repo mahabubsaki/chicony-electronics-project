@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import { useUpdateProfile } from 'react-firebase-hooks/auth';
 
-const UpdateModal = ({ setUpdateModal, refetch, profileOwner }) => {
+const UpdateProfileModal = ({ setUpdateModal, refetch, profileOwner }) => {
     const { name, education, phone, linkedin, location } = profileOwner;
     const [updateProfile, saving] = useUpdateProfile(auth);
     const [updating, setUpdating] = useState(false)
@@ -106,4 +106,4 @@ const UpdateModal = ({ setUpdateModal, refetch, profileOwner }) => {
     );
 };
 
-export default UpdateModal;
+export default UpdateProfileModal;

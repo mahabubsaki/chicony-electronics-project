@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-const AdminProducCard = ({ product, setProductModal, refetch }) => {
+const ManageProductCard = ({ product, setProductModal, refetch }) => {
     const { img, available, description, _id, price, name, minimum } = product;
     const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
@@ -83,4 +83,4 @@ const AdminProducCard = ({ product, setProductModal, refetch }) => {
     );
 };
 
-export default AdminProducCard;
+export default ManageProductCard;

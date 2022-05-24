@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
-import AdminProducCard from './AdminProducCard';
+import ManageProductCard from './ManageProductCard';
 import ProductModal from './ProductModal';
 
 const ManageProducts = () => {
@@ -48,12 +48,12 @@ const ManageProducts = () => {
         <div>
             <h1 className="text-center font-bold text-3xl my-3">{data?.data?.length} Products available in this site</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 w-full">
-                {data?.data?.map(product => <AdminProducCard
+                {data?.data?.map(product => <ManageProductCard
                     key={product._id}
                     product={product}
                     setProductModal={setProductModal}
                     refetch={refetch}
-                ></AdminProducCard>)}
+                ></ManageProductCard>)}
             </div>
             {productModal && <ProductModal
                 refetch={refetch}

@@ -57,25 +57,30 @@ const SingleProduct = () => {
         setProcessing(true)
         if (admin) {
             toast.error('Admin can not place order', toastConfig)
-            reset()
             setProcessing(false)
+            setQuantityInput(minimum)
+            reset()
             return
         }
         if (isNaN(parseInt(quantityInput)) || quantityInput <= 0) {
             toast.error('Invalid Quantity Given', toastConfig)
-            reset()
             setProcessing(false)
+            setQuantityInput(minimum)
+            reset()
             return
         }
         if (parseInt(quantityInput) < minimum) {
             toast.error(`You have to set the quantity minimum ${minimum} `, toastConfig)
-            reset()
             setProcessing(false)
+            setQuantityInput(minimum)
+            reset()
             return
         }
+
         if (parseInt(quantityInput) > available) {
             toast.error(`You can't set the quantity more than ${available}`, toastConfig)
             setProcessing(false)
+            setQuantityInput(minimum)
             reset()
             return
         }
@@ -142,6 +147,7 @@ const SingleProduct = () => {
     if (isLoading || loading) {
         return <Loading></Loading>
     }
+    console.log(quantityInput);
     return (
         <div className="min-h-[500px] grid gap-2 grid-cols-1 md:grid-cols-2">
             <div className="flex justify-center items-center">
@@ -163,7 +169,7 @@ const SingleProduct = () => {
                         <input type="text" value={user?.displayName} disabled readOnly className='w-full p-2 rounded-md border border-info mb-2 bg-[#d3cece]' />
                         <input type="text" placeholder='Your Address' {...register("address")} className='w-full p-2 rounded-md border border-info' required /> <br />
                         <input type="tel" placeholder='Your Phone Number' {...register("phone")} className='w-full p-2 rounded-md border border-info my-2' required /> <br />
-                        <input type="number" placeholder='Enter Quantity' className='w-full p-2 rounded-md border border-info mb-2' defaultValue={minimum} onChange={(e) => setQuantityInput(e.target.value)} required /> <br />
+                        <input type="number" placeholder='Enter Quantity' className='w-full p-2 rounded-md border border-info mb-2' defaultValue={minimum} onChange={(e) => setQuantityInput(parseInt(e.target.value))} required /> <br />
                         {processing &&
                             <div className="flex justify-center">
                                 <svg role="status" className="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

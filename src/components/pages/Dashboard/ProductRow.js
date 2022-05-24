@@ -95,6 +95,7 @@ const ProductRow = ({ product, no, refetch }) => {
                     <p className="text-primary text-center">Paid</p>
                     <p className="text-center text-xs font-bold">Transaction Id: {paymentId
                     }</p>
+                    <p className="text-primary text-center text-xs">Pending Shipping</p>
                 </td>
             }
             {

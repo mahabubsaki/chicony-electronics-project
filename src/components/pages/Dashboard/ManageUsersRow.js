@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoMdOptions } from 'react-icons/io'
 import { GrUserAdmin } from 'react-icons/gr'
 import { FaUserFriends } from 'react-icons/fa'

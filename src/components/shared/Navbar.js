@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Customlink from '../utilities/Customlink';
 import { RiMenu3Line } from 'react-icons/ri'
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 const Navbar = () => {
     const [user, loading] = useAuthState(auth)
     const { pathname } = useLocation()
+    const navigate = useNavigate()
     const handleSignOut = () => {
         Swal.fire({
             text: 'Are you sure you want to sign out?',
@@ -25,6 +26,7 @@ const Navbar = () => {
             if (result.isConfirmed) {
                 localStorage.removeItem('accessToken')
                 signOut(auth)
+                navigate('/')
             }
         });
     }

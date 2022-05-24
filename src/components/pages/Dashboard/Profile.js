@@ -9,7 +9,7 @@ import { HiIdentification, HiLocationMarker } from 'react-icons/hi'
 import { MdEmail } from 'react-icons/md'
 import { IoIosSchool } from 'react-icons/io'
 import { AiFillPhone, AiFillLinkedin } from 'react-icons/ai'
-import UpdateModal from './UpdateModal';
+import UpdateProfileModal from './UpdateProfileModal';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -75,11 +75,11 @@ const Profile = () => {
                     <h1 className="flex items-center"><AiFillLinkedin className="mx-2"></AiFillLinkedin>LinkdIn : {linkedin ? linkedin : 'Not  Added Yet'}</h1>
                 </div>
                 <label htmlFor="update-modal" className="modal-button cursor-pointer btn btn-success w-48 mx-auto my-4" onClick={() => setUpdateModal(true)}>Update Profile</label>
-                {updateModal && <UpdateModal
+                {updateModal && <UpdateProfileModal
                     setUpdateModal={setUpdateModal}
                     refetch={refetch}
                     profileOwner={data?.data}
-                ></UpdateModal>}
+                ></UpdateProfileModal>}
             </div>
         </div>
     );
