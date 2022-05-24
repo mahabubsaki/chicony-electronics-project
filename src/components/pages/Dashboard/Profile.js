@@ -26,7 +26,7 @@ const Profile = () => {
     const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
     const [updateModal, setUpdateModal] = useState(false)
-    const { data, isLoading, refetch } = useQuery(['singleProduct', user], async () => {
+    const { data, isLoading, refetch } = useQuery(['profile', user], async () => {
         try {
             return await axios({
                 method: 'GET',

@@ -21,7 +21,7 @@ const ManageOrders = () => {
     const [user, loading] = useAuthState(auth)
     const [array, setArray] = useState([])
     const [myLoading, setMyloading] = useState(true)
-    const { data, isLoading, refetch } = useQuery(['all-orders', user], async () => {
+    const { data, isLoading, refetch } = useQuery(['all-orders-admin', user], async () => {
         try {
             return await axios({
                 method: 'GET',

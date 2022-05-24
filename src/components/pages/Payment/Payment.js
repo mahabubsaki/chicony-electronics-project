@@ -28,7 +28,7 @@ const Payment = () => {
     }
     const [user, loading] = useAuthState(auth)
     const { orderId } = useParams()
-    const { data, isLoading } = useQuery(['order', orderId], async () => {
+    const { data, isLoading } = useQuery(['order-payment-user', orderId], async () => {
         try {
             return await axios({
                 method: 'GET',

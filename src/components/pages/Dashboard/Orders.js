@@ -21,7 +21,7 @@ const Orders = () => {
         progress: undefined,
     }
     const navigate = useNavigate()
-    const { data, isLoading, refetch } = useQuery(['orders', user], async () => {
+    const { data, isLoading, refetch } = useQuery(['orders-user', user], async () => {
         try {
             return await axios({
                 method: 'GET',

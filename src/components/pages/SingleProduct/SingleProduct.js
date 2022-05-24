@@ -28,7 +28,7 @@ const SingleProduct = () => {
     }
     const { productId } = useParams()
     const [processing, setProcessing] = useState(false)
-    const { data, isLoading, refetch } = useQuery(['singleProduct', productId], async () => {
+    const { data, isLoading, refetch } = useQuery(['singleProduct-user', productId], async () => {
         try {
             return await axios({
                 method: 'GET',

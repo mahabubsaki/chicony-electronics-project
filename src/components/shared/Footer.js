@@ -8,21 +8,21 @@ const Footer = () => {
                 <p>Chicony Electronics<br></br>Providing reliable products since 2019</p>
             </div>
             <div>
-                <span className="footer-title">Services</span>
+                <span className="font-bold text-lg text-[gray]">Services</span>
                 <span className="link link-hover">Branding</span>
                 <span className="link link-hover">Design</span>
                 <span className="link link-hover">Marketing</span>
                 <span className="link link-hover">Advertisement</span>
             </div>
             <div>
-                <span className="footer-title">Company</span>
+                <span className="font-bold text-lg text-[gray]">Company</span>
                 <span className="link link-hover">About us</span>
                 <span className="link link-hover">Contact</span>
                 <span className="link link-hover">Jobs</span>
                 <span className="link link-hover">Press kit</span>
             </div>
             <div>
-                <span className="footer-title">Legal</span>
+                <span className="font-bold text-lg text-[gray]">Legal</span>
                 <span className="link link-hover">Terms of use</span>
                 <span className="link link-hover">Privacy policy</span>
                 <span className="link link-hover">Cookie policy</span>
