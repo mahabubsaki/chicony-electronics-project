@@ -9,7 +9,7 @@ import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 
 
-const AdminProductsRow = ({ product, no, refetch }) => {
+const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -34,6 +34,7 @@ const AdminProductsRow = ({ product, no, refetch }) => {
             cancelButtonText: 'No',
         }).then((result) => {
             if (result.isConfirmed) {
+                setChildAction(true)
                 try {
                     const deleteProduct = async () => {
                         const { data } = await axios({
@@ -52,8 +53,10 @@ const AdminProductsRow = ({ product, no, refetch }) => {
                         if (data.acknowledged) {
                             toast.success('Product cancelled successfully', toastConfig)
                             refetch()
+                            setChildAction(false)
                         }
                         else {
+                            setChildAction(false)
                             toast.error('Something went wrong', toastConfig)
                         }
                     }
@@ -80,6 +83,7 @@ const AdminProductsRow = ({ product, no, refetch }) => {
             cancelButtonText: 'No',
         }).then((result) => {
             if (result.isConfirmed) {
+                setChildAction(true)
                 try {
                     const shipOrder = async () => {
                         const { data } = await axios({
@@ -93,9 +97,11 @@ const AdminProductsRow = ({ product, no, refetch }) => {
                         if (data.acknowledged) {
                             toast.success('Product shipped successfully', toastConfig)
                             refetch()
+                            setChildAction(false)
                         }
                         else {
                             toast.error('Something went wrong', toastConfig)
+                            setChildAction(false)
                         }
                     }
                     shipOrder()
