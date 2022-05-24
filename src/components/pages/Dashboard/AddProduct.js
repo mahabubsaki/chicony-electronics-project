@@ -20,6 +20,11 @@ const AddProduct = () => {
     const handleUAddProduct = async (e) => {
         e.preventDefault()
         setAdding(true)
+        if ((e.target.price.value < 0) || (e.target.minimum.value < 0) || (e.target.available.value < 0)) {
+            toast.error('Invalid input given', toastConfig)
+            setAdding(false)
+            return
+        }
         const formdata = new FormData();
         const image = e.target.image.files[0]
         const name = e.target.image.files[0].name
