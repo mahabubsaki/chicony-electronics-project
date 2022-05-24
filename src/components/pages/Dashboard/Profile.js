@@ -78,6 +78,7 @@ const Profile = () => {
                 {updateModal && <UpdateModal
                     setUpdateModal={setUpdateModal}
                     refetch={refetch}
+                    profileOwner={data?.data}
                 ></UpdateModal>}
             </div>
         </div>
