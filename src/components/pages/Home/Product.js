@@ -16,7 +16,8 @@ const Product = ({ product }) => {
                     <h1 className='text-xl'>Available : {available} pices</h1>
                     <h1 className='text-xl'>Minimum Buy : {minimum} pices</h1>
                     <h1 className='text-xl'>Price Per Piece : ${price}</h1>
-                    <button className="btn btn-primary" onClick={() => navigate(`/product/${id}`)} disabled={!available === 0}>Order Now</button>
+                    <button className="btn btn-primary" onClick={() => navigate(`/product/${id}`)} disabled={available === 0}>Order Now</button>
+                    {available === 0 && <p className="text-center text-error">Stock Out</p>}
                 </div>
             </div>
         </div>
