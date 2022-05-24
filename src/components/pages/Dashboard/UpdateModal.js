@@ -79,7 +79,7 @@ const UpdateModal = ({ setUpdateModal, refetch }) => {
             <div className="modal modal-middle">
                 <div className="modal-box">
                     <label htmlFor="update-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold text-lg">Reset Your Password</h3>
+                    <h3 className="font-bold text-lg">Update Your Profile</h3>
                     <form onSubmit={handleUpdateForm}>
                         <input type="text" name="education" className="w-full rounded-lg border border-[#CFCFCF] p-2 my-3" placeholder="Enter Your Education" required />
                         <input type="text" name="location" className="w-full rounded-lg border border-[#CFCFCF] p-2 my-3" placeholder="Enter Your Location" required />
