@@ -3,7 +3,7 @@ import React from 'react';
 const Portfolio = () => {
     return (
         <div className="min-h-[500px] flex justify-center items-center">
-            <div className="w-3/5 mx-auto">
+            <div className="w-3/5 mx-auto text-lg">
                 <h1>Name : Mahabub Saki</h1>
                 <h1>Email : mahabub.saki.bd@gmail.com</h1>
                 <h1>Education : HSC Batch (2021)</h1>
