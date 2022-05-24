@@ -2,11 +2,21 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 import AdminProductsRow from './AdminProductsRow';
 
 const ManageOrders = () => {
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
     const [user, loading] = useAuthState(auth)
     const [array, setArray] = useState([])
     const [myLoading, setMyloading] = useState(true)
@@ -18,7 +28,7 @@ const ManageOrders = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email,
                 },
-                url: `http://localhost:5000/manage-orders`
+                url: `http://localhost:5000/manage-orders?first=first`
             })
         }
         catch (err) {
@@ -33,7 +43,7 @@ const ManageOrders = () => {
     }, [data])
     const handleSearchByEmail = async (e) => {
         e.preventDefault()
-        // setMyloading(true)
+        setMyloading(true)
         try {
             const { data } = await axios({
                 method: 'GET',
@@ -43,8 +53,37 @@ const ManageOrders = () => {
                     email: user?.email
                 }
             })
-            if (data.acknowledged) {
-                console.log(data)
+            if (data.length > 0) {
+                setArray(data)
+                setMyloading(false)
+            }
+            else {
+                toast.error(`No user found with ${e.target.email.value}`, toastConfig)
+                setMyloading(false)
+            }
+        }
+        catch (err) {
+
+        }
+    }
+    const handleDropdown = async (e) => {
+        setMyloading(true)
+        try {
+            const { data } = await axios({
+                method: 'GET',
+                url: `http://localhost:5000/manage-orders?search=${e.target.email.value}`,
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                    email: user?.email
+                }
+            })
+            if (data.length > 0) {
+                setArray(data)
+                setMyloading(false)
+            }
+            else {
+                toast.error(`No user found with ${e.target.email.value} sorting order`, toastConfig)
+                setMyloading(false)
             }
         }
         catch (err) {
@@ -57,7 +96,7 @@ const ManageOrders = () => {
     return (
         <div>
             <div className="flex justify-center my-2">
-                <select class="select select-bordered w-full max-w-xs" defaultValue='none'>
+                <select class="select select-bordered w-full max-w-xs" defaultValue='none' onChange={handleDropdown}>
                     <option disabled value="none">Sort Orders</option>
                     <option className="all">All</option>
                     <option className="unpaid">By Unpaid</option>
@@ -68,7 +107,7 @@ const ManageOrders = () => {
             <form className="flex justify-center my-2" onSubmit={handleSearchByEmail}>
                 <div class="form-control">
                     <div class="input-group">
-                        <input type="email" placeholder="Search by Email" class="input input-bordered" name="email" />
+                        <input type="email" placeholder="Search by Email" class="input input-bordered" name="email" required />
                         <button class="btn btn-square" type='submit'>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
