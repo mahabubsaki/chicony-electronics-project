@@ -1,13 +1,26 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 import AdminProducCard from './AdminProducCard';
 import ProductModal from './ProductModal';
 
 const ManageProducts = () => {
+    const navigate = useNavigate()
+    const toastConfig = {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
     const [user, loading] = useAuthState(auth)
     const [productModal, setProductModal] = useState(null)
     const { data, isLoading, refetch } = useQuery(['allProducts-admin', user], async () => {
@@ -22,7 +35,10 @@ const ManageProducts = () => {
             })
         }
         catch (err) {
-
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     })
     if (loading || isLoading) {

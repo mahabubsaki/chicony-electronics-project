@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { IoMdOptions } from 'react-icons/io'
 import { MdCancel } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import auth from '../../firebase.init';
@@ -10,6 +12,7 @@ import Loading from '../../utilities/Loading';
 
 
 const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
+    const navigate = useNavigate()
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -63,10 +66,10 @@ const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
                     deleteProduct()
                 }
                 catch (err) {
-                    // navigate('/')
-                    // toast.error('Something Went Wrong', toastConfig)
-                    // signOut(auth)
-                    // localStorage.removeItem('accessToken')
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         })
@@ -107,7 +110,10 @@ const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
                     shipOrder()
                 }
                 catch (err) {
-
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         })

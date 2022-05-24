@@ -1,11 +1,14 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 
 const AddProduct = () => {
+    const navigate = useNavigate()
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -61,6 +64,10 @@ const AddProduct = () => {
             }
             catch (err) {
                 setAdding(false)
+                navigate('/')
+                toast.error('Something Went Wrong', toastConfig)
+                signOut(auth)
+                localStorage.removeItem('accessToken')
             }
         }
         else {

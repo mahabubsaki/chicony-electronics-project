@@ -1,13 +1,16 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 import AdminProductsRow from './AdminProductsRow';
 
 const ManageOrders = () => {
+    const navigate = useNavigate()
     const toastConfig = {
         position: "top-right",
         autoClose: 3000,
@@ -33,7 +36,10 @@ const ManageOrders = () => {
             })
         }
         catch (err) {
-            console.log(err);
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     })
     useEffect(() => {
@@ -65,7 +71,10 @@ const ManageOrders = () => {
             e.target.reset()
         }
         catch (err) {
-
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     }
     const handleDropdown = async (e) => {
@@ -89,7 +98,10 @@ const ManageOrders = () => {
             }
         }
         catch (err) {
-
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     }
     if (loading || isLoading || childAction) {

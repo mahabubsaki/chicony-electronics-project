@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -17,6 +19,7 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
         progress: undefined,
     }
     const { available, description, _id, price, name, minimum } = product;
+    const navigate = useNavigate()
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         setUpdating(true)
@@ -56,6 +59,10 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
         }
         catch (err) {
             setUpdating(false)
+            navigate('/')
+            toast.error('Something Went Wrong', toastConfig)
+            signOut(auth)
+            localStorage.removeItem('accessToken')
         }
     }
     return (

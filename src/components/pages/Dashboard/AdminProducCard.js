@@ -5,9 +5,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../../utilities/Loading';
 import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const AdminProducCard = ({ product, setProductModal, refetch }) => {
     const { img, available, description, _id, price, name, minimum } = product;
+    const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
     const toastConfig = {
         position: "top-right",
@@ -51,7 +54,10 @@ const AdminProducCard = ({ product, setProductModal, refetch }) => {
                     deleteProduct()
                 }
                 catch (err) {
-
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         });

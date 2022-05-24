@@ -8,10 +8,13 @@ import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../../utilities/Loading';
 import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
     const { name, email, role } = eachUser
+    const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
     const toastConfig = {
         position: "top-right",
@@ -36,35 +39,33 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
             if (result.isConfirmed) {
                 try {
                     const changeRole = async () => {
-                        try {
-                            setChanging(true)
-                            const { data } = await axios({
-                                method: 'PUT',
-                                headers: {
-                                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                                    email: user?.email
-                                },
-                                url: `http://localhost:5000/change-role?role=Admin&email=${email}`
+                        setChanging(true)
+                        const { data } = await axios({
+                            method: 'PUT',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                                email: user?.email
+                            },
+                            url: `http://localhost:5000/change-role?role=Admin&email=${email}`
 
-                            })
-                            if (data.acknowledged) {
-                                toast.success('Successfully changed role to Admin', toastConfig)
-                                refetch()
-                                setChanging(false)
-                            }
-                            else {
-                                toast.error('Something went wrong', toastConfig)
-                                setChanging(false)
-                            }
+                        })
+                        if (data.acknowledged) {
+                            toast.success('Successfully changed role to Admin', toastConfig)
+                            refetch()
+                            setChanging(false)
                         }
-                        catch (err) {
-
+                        else {
+                            toast.error('Something went wrong', toastConfig)
+                            setChanging(false)
                         }
                     }
                     changeRole()
                 }
                 catch (err) {
-
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         });
@@ -83,34 +84,32 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
             if (result.isConfirmed) {
                 try {
                     const changeRole = async () => {
-                        try {
-                            setChanging(true)
-                            const { data } = await axios({
-                                method: 'PUT',
-                                headers: {
-                                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                                    email: user?.email
-                                },
-                                url: `http://localhost:5000/change-role?role=User&email=${email}`
-                            })
-                            if (data.acknowledged) {
-                                toast.success('Successfully changed role to User', toastConfig)
-                                refetch()
-                                setChanging(false)
-                            }
-                            else {
-                                toast.error('Something went wrong', toastConfig)
-                                setChanging(false)
-                            }
+                        setChanging(true)
+                        const { data } = await axios({
+                            method: 'PUT',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                                email: user?.email
+                            },
+                            url: `http://localhost:5000/change-role?role=User&email=${email}`
+                        })
+                        if (data.acknowledged) {
+                            toast.success('Successfully changed role to User', toastConfig)
+                            refetch()
+                            setChanging(false)
                         }
-                        catch (err) {
-
+                        else {
+                            toast.error('Something went wrong', toastConfig)
+                            setChanging(false)
                         }
                     }
                     changeRole()
                 }
                 catch (err) {
-
+                    navigate('/')
+                    toast.error('Something Went Wrong', toastConfig)
+                    signOut(auth)
+                    localStorage.removeItem('accessToken')
                 }
             }
         });
