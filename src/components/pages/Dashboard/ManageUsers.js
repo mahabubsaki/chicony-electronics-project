@@ -8,8 +8,8 @@ import ManageUsersRow from './ManageUsersRow';
 
 const ManageUsers = () => {
     const [user, loading] = useAuthState(auth)
-    const [childAction, setChildAction] = useState(false)
     const [array, setArray] = useState([])
+    const [changing, setChanging] = useState(false)
     const { data, isLoading, refetch } = useQuery(['all-users-admin', user], async () => {
         try {
             return await axios({
@@ -30,7 +30,7 @@ const ManageUsers = () => {
             setArray(data?.data)
         }
     }, [data])
-    if (loading || isLoading || childAction) {
+    if (loading || isLoading || changing) {
         return <Loading></Loading>
     }
     return (
@@ -49,10 +49,10 @@ const ManageUsers = () => {
                     <tbody>
                         {array.map((user, index) => <ManageUsersRow
                             key={user._id}
-                            user={user}
+                            eachUser={user}
                             no={index + 1}
                             refetch={refetch}
-                            setChildAction={setChildAction}
+                            setChanging={setChanging}
                         ></ManageUsersRow>)}
                     </tbody>
                 </table>
