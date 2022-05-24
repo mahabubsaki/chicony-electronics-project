@@ -36,6 +36,7 @@ const ManageProducts = () => {
                     key={product._id}
                     product={product}
                     setProductModal={setProductModal}
+                    refetch={refetch}
                 ></AdminProducCard>)}
             </div>
             {productModal && <ProductModal

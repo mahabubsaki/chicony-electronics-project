@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminProducCard = ({ product, setProductModal }) => {
+const AdminProducCard = ({ product, setProductModal, refetch }) => {
     const { img, available, description, _id, price, name, minimum } = product;
     return (
         <div class="card bg-base-100 shadow-xl">
@@ -16,7 +16,7 @@ const AdminProducCard = ({ product, setProductModal }) => {
                     <button class="btn btn-error">Delete</button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
