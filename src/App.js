@@ -27,6 +27,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from './components/utilities/Loading';
 import IsVarified from './components/shared/Isverified';
 import Payment from './components/pages/Payment/Payment';
+import NotFound from './components/pages/NotFound/NotFound';
 function App() {
   const [user, loading] = useAuthState(auth)
   if (loading) {
@@ -68,6 +69,7 @@ function App() {
           <Route path="manage-products" element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
           <Route path="add-product" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
         </Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
