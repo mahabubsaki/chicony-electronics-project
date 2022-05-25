@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Chicony Electronics
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## This project was completed by [Mahabub Saki](https://www.facebook.com/mahabubsaki/)
 
-## Available Scripts
+## [Live site link](https://chicony-electronics.web.app/)
 
-In the project directory, you can run:
+## [Client site link](https://github.com/programming-hero-web-course1/manufacturer-website-client-side-mahabubsaki)
 
-### `npm start`
+## [Server site link](https://github.com/programming-hero-web-course1/manufacturer-website-server-side-mahabubsaki)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Pardon my designing sense 🙏. Trying to improve in design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## `Features of Chicony Electronics`
 
-### `npm test`
+- ### **This site is made with very hard security every intresting route require an jwt verification, it will automatically log out user or admin if found any verification error**
+- ### **If any user give a review it will be sorted on the home page with latest reviews**
+- ### **User can't set the quantity less than minimum and more than available in case of ordering**
+- ### **Most of the errors showed by toast**
+- ### **User and change their profile information**
+- ### **User can cancel unpaid order anytime give a review**
+- ### **Admin can see all user, all products, all orders**
+- ### **Admin can also add products, cancel order, change order status, find user by their email, sort order by order status**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Stack Used : MERN (Mongo, Express, React, Node)
 
-### `npm run build`
+## `Library or Framework user`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ### **[Tailwind](https://tailwindcss.com/)**
+- ### **[DaisyUI](https://daisyui.com/)**
+- ### **[JWT](https://jwt.io/)**
+- ### **[React firebase hooks](https://github.com/CSFrequency/react-firebase-hooks)**
+- ### **[React Icons](https://react-icons.github.io/react-icons/)**
+- ### **[Toastify](https://fkhadra.github.io/react-toastify/introduction)**
+- ### **[React router](https://reactrouter.com/)**
+- ### **[Heroku](https://www.heroku.com/)**
+- ### **[Axios](https://axios-http.com/)**
