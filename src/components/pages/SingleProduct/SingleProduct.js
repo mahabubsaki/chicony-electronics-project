@@ -15,6 +15,7 @@ import NotFound from '../NotFound/NotFound';
 const SingleProduct = () => {
     const navigate = useNavigate()
     const [user, loading] = useAuthState(auth)
+    const [error, setError] = useState('')
     const [quantityInput, setQuantityInput] = useState(0)
     const { admin } = useAdminCheck(user?.email)
     const toastConfig = {
@@ -141,17 +142,19 @@ const SingleProduct = () => {
         setProcessing(false)
         reset()
     }
-    // did not showed error while i am already disabled the button
-    // useEffect(() => {
-    //     if (quantityInput) {
-    //         if (quantityInput < minimum) {
-    //             toast.error(`You have to set the quantity minimum ${minimum}`, toastConfig)
-    //         }
-    //         if (quantityInput > available) {
-    //             toast.error(`You can't set the quantity more than ${available}`, toastConfig)
-    //         }
-    //     }
-    // }, [quantityInput, available, minimum])
+    useEffect(() => {
+        if (quantityInput) {
+            if (quantityInput < minimum) {
+                setError(`You have to set the quantity minimum ${minimum}`)
+            }
+            else if (quantityInput > available) {
+                setError(`You can't set the quantity more than ${available}`)
+            }
+            else {
+                setError('')
+            }
+        }
+    }, [quantityInput, available, minimum])
     if (!data?.data) {
         return <NotFound></NotFound>
     }
@@ -190,6 +193,7 @@ const SingleProduct = () => {
                             </div>}
                         <button type='submit' className="btn btn-primary block mx-auto" disabled={available === 0 || !(quantityInput >= minimum) || !(quantityInput <= available)}>Purchase</button>
                     </form>
+                    {error && <p className="text-error text-center">{error}</p>}
                     {available === 0 && <p className="text-center text-error">Stock Out</p>}
                 </div>
             </div>
