@@ -29,7 +29,7 @@ const Orders = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email,
                 },
-                url: `http://localhost:5000/all-orders?email=${user?.email}`
+                url: `https://mysterious-shore-40767.herokuapp.com/all-orders?email=${user?.email}`
             })
         }
         catch (err) {

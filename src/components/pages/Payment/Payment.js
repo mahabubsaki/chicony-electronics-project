@@ -38,7 +38,7 @@ const Payment = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
                 },
-                url: `http://localhost:5000/payment?id=${orderId}`
+                url: `https://mysterious-shore-40767.herokuapp.com/payment?id=${orderId}`
             })
         }
         catch (err) {

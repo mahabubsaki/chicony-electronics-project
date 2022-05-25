@@ -32,7 +32,7 @@ const ManageOrders = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email,
                 },
-                url: `http://localhost:5000/manage-orders?first=first`
+                url: `https://mysterious-shore-40767.herokuapp.com/manage-orders?first=first`
             })
         }
         catch (err) {
@@ -54,7 +54,7 @@ const ManageOrders = () => {
         try {
             const { data } = await axios({
                 method: 'GET',
-                url: `http://localhost:5000/manage-orders?search=${e.target.email.value}`,
+                url: `https://mysterious-shore-40767.herokuapp.com/manage-orders?search=${e.target.email.value}`,
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
@@ -82,7 +82,7 @@ const ManageOrders = () => {
         try {
             const { data } = await axios({
                 method: 'GET',
-                url: `http://localhost:5000/manage-orders?${e.target.value}=${e.target.value}`,
+                url: `https://mysterious-shore-40767.herokuapp.com/manage-orders?${e.target.value}=${e.target.value}`,
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email

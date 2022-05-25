@@ -38,7 +38,7 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
                 },
-                url: `http://localhost:5000/product-update?id=${_id}`,
+                url: `https://mysterious-shore-40767.herokuapp.com/product-update?id=${_id}`,
                 data: {
                     name: e.target.name.value,
                     description: e.target.description.value,

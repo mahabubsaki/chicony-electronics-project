@@ -31,7 +31,7 @@ const ManageUsers = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
                 },
-                url: `http://localhost:5000/all-users?first=first`
+                url: `https://mysterious-shore-40767.herokuapp.com/all-users?first=first`
             })
         }
         catch (err) {

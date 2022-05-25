@@ -37,7 +37,7 @@ const UpdateProfileModal = ({ setUpdateModal, refetch, profileOwner }) => {
                 const updateProfiles = async () => {
                     const { data } = await axios({
                         method: 'PUT',
-                        url: `http://localhost:5000/update-profile?email=${user?.email}`,
+                        url: `https://mysterious-shore-40767.herokuapp.com/update-profile?email=${user?.email}`,
                         data: {
                             name: e.target.name.value,
                             avatar: upload.data.data.display_url,

@@ -50,7 +50,7 @@ const ProductRow = ({ product, no, refetch }) => {
                                 productId: productId,
                                 quantity: quantity,
                             },
-                            url: `http://localhost:5000/delete-order?id=${_id}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/delete-order?id=${_id}`
 
                         })
                         if (data.acknowledged) {

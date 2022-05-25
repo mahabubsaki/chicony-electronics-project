@@ -81,7 +81,7 @@ const Register = () => {
             const googleUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
-                    url: `http://localhost:5000/token-issue?email=${googleUser.user.email}`,
+                    url: `https://mysterious-shore-40767.herokuapp.com/token-issue?email=${googleUser.user.email}`,
                 })
                 localStorage.setItem('accessToken', data.token)
             }
@@ -90,7 +90,7 @@ const Register = () => {
             const saveGoogleUserDb = async () => {
                 await axios({
                     method: 'PUT',
-                    url: `http://localhost:5000/user`,
+                    url: `https://mysterious-shore-40767.herokuapp.com/user`,
                     data: { email: googleUser.user.email, name: googleUser.user.displayName }
                 })
                 toast.success('Successfully logged in', toastConfig)
@@ -103,7 +103,7 @@ const Register = () => {
             const normalUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
-                    url: `http://localhost:5000/token-issue?email=${normalUser.user.email}`,
+                    url: `https://mysterious-shore-40767.herokuapp.com/token-issue?email=${normalUser.user.email}`,
                 })
                 localStorage.setItem('accessToken', data.token)
             }
@@ -112,7 +112,7 @@ const Register = () => {
             const saveNormalUserDb = async () => {
                 await axios({
                     method: 'PUT',
-                    url: `http://localhost:5000/user`,
+                    url: `https://mysterious-shore-40767.herokuapp.com/user`,
                     data: { email: normalUser.user.email, name: normalName }
                 })
                 toast.success('Successfully signed up', toastConfig)

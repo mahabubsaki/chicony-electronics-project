@@ -34,7 +34,7 @@ const AddReview = () => {
         try {
             const { data } = await axios({
                 method: 'POST',
-                url: `http://localhost:5000/add-review`,
+                url: `https://mysterious-shore-40767.herokuapp.com/add-review`,
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email,

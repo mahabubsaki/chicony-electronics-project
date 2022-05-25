@@ -27,7 +27,7 @@ const ManageProducts = () => {
         try {
             return await axios({
                 method: 'GET',
-                url: `http://localhost:5000/admin-all-product`,
+                url: `https://mysterious-shore-40767.herokuapp.com/admin-all-product`,
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email

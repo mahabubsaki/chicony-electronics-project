@@ -41,7 +41,7 @@ const AddProduct = () => {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                         email: user?.email
                     },
-                    url: 'http://localhost:5000/add-product-admin',
+                    url: 'https://mysterious-shore-40767.herokuapp.com/add-product-admin',
                     data: {
                         img: upload.data.data.display_url,
                         name: e.target.name.value,

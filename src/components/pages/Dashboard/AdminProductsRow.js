@@ -50,7 +50,7 @@ const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
                                 productId: productId,
                                 quantity: quantity,
                             },
-                            url: `http://localhost:5000/admin-delete-order?id=${_id}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/admin-delete-order?id=${_id}`
 
                         })
                         if (data.acknowledged) {
@@ -95,7 +95,7 @@ const AdminProductsRow = ({ product, no, refetch, setChildAction }) => {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                                 email: user?.email
                             },
-                            url: `http://localhost:5000/ship-order?id=${_id}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/ship-order?id=${_id}`
                         })
                         if (data.acknowledged) {
                             toast.success('Product shipped successfully', toastConfig)

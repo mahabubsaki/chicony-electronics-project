@@ -48,7 +48,7 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                                 email: user?.email
                             },
-                            url: `http://localhost:5000/change-role?role=Admin&email=${email}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/change-role?role=Admin&email=${email}`
 
                         })
                         if (data.acknowledged) {
@@ -94,7 +94,7 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                                 email: user?.email
                             },
-                            url: `http://localhost:5000/change-role?role=User&email=${email}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/change-role?role=User&email=${email}`
                         })
                         if (data.acknowledged) {
                             toast.success('Successfully changed role to User', toastConfig)

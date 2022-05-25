@@ -8,7 +8,7 @@ const useAdminCheck = (email) => {
     useEffect(() => {
         const checkUser = async () => {
             const { data } = await axios({
-                url: `http://localhost:5000/check-role?email=${email}`,
+                url: `https://mysterious-shore-40767.herokuapp.com/check-role?email=${email}`,
                 method: 'GET',
             })
             setAdmin(data.admin)

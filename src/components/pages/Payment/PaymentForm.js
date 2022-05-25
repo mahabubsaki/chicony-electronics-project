@@ -39,7 +39,7 @@ const PaymentFrom = ({ product }) => {
                         email: user?.email
                     },
                     data: product,
-                    url: `http://localhost:5000/create-payment-intent`
+                    url: `https://mysterious-shore-40767.herokuapp.com/create-payment-intent`
                 })
                 if (data?.clientSecret) {
                     setClientSecret(data.clientSecret)
@@ -108,7 +108,7 @@ const PaymentFrom = ({ product }) => {
                         paymentId: paymentIntent.id,
                         status: 'Paid',
                     },
-                    url: `http://localhost:5000/complete-payment?id=${product.orderId}`,
+                    url: `https://mysterious-shore-40767.herokuapp.com/complete-payment?id=${product.orderId}`,
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                         email: user?.email,

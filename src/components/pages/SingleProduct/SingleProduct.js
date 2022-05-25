@@ -40,7 +40,7 @@ const SingleProduct = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
                 },
-                url: `http://localhost:5000/product?id=${productId}`
+                url: `https://mysterious-shore-40767.herokuapp.com/product?id=${productId}`
             })
         }
         catch (err) {
@@ -125,7 +125,7 @@ const SingleProduct = () => {
                                 productImg: img,
                                 status: 'Not Paid',
                             },
-                            url: `http://localhost:5000/add-order?current=${available - parseInt(quantityInput)}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/add-order?current=${available - parseInt(quantityInput)}`
                         })
                         if (data.acknowledged) {
                             // showing the actual data immediately if order saved in backend successfully

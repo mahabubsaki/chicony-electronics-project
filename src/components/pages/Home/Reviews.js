@@ -8,7 +8,7 @@ const Reviews = () => {
     const { data, isLoading } = useQuery('reviews', async () => {
         return await axios({
             method: 'GET',
-            url: 'http://localhost:5000/all-reviews'
+            url: 'https://mysterious-shore-40767.herokuapp.com/all-reviews'
         })
     })
     if (isLoading) {

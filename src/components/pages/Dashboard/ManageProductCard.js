@@ -41,7 +41,7 @@ const ManageProductCard = ({ product, setProductModal, refetch }) => {
                                 authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                                 email: user?.email
                             },
-                            url: `http://localhost:5000/delete-product?id=${_id}`
+                            url: `https://mysterious-shore-40767.herokuapp.com/delete-product?id=${_id}`
                         })
                         if (data.acknowledged) {
                             toast.success('Product deleted successfully', toastConfig)

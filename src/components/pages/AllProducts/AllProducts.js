@@ -9,7 +9,7 @@ const AllProducts = () => {
     const { data, isLoading } = useQuery('all-products', async () => {
         return await axios({
             method: 'GET',
-            url: 'http://localhost:5000/all-products?location=true'
+            url: 'https://mysterious-shore-40767.herokuapp.com/all-products?location=true'
         })
     })
     if (isLoading) {

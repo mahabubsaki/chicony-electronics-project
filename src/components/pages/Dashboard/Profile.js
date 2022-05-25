@@ -35,14 +35,14 @@ const Profile = () => {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                     email: user?.email
                 },
-                url: `http://localhost:5000/user-profile?email=${user?.email}`
+                url: `https://mysterious-shore-40767.herokuapp.com/user-profile?email=${user?.email}`
             })
         }
         catch (err) {
+            localStorage.removeItem('accessToken')
             navigate('/')
             toast.error('Something Went Wrong', toastConfig)
             signOut(auth)
-            localStorage.removeItem('accessToken')
         }
     })
     const { email, name, avatar, education, location, phone, linkedin } = data?.data || {}
