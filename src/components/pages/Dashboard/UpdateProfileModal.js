@@ -29,9 +29,11 @@ const UpdateProfileModal = ({ setUpdateModal, refetch, profileOwner }) => {
         const image = e.target.image.files[0]
         const name = e.target.image.files[0].name
         formdata.append('image', image, name)
+        // uploading img to imgbb
         const upload = await axios.post('https://api.imgbb.com/1/upload?key=28f7e689e78cbdf683b41d414ebda692', formdata)
         if (upload.data.success) {
             try {
+                // if image sucessfully uploaded then saving user info to database
                 const updateProfiles = async () => {
                     const { data } = await axios({
                         method: 'PUT',
@@ -50,6 +52,7 @@ const UpdateProfileModal = ({ setUpdateModal, refetch, profileOwner }) => {
                         }
                     })
                     if (data.acknowledged) {
+                        // if updated in database then also updating in firebase with a toast
                         await updateProfile({ displayName: e.target.name.value });
                         e.target.reset()
                         setUpdateModal(false)

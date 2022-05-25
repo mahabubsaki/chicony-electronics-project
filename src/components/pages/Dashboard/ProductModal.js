@@ -23,6 +23,7 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         setUpdating(true)
+        // chicking some validation of number input
         if ((e.target.price.value < 0) || (e.target.minimum.value < 0) || (e.target.available.value < 0)) {
             toast.error('Invalid input given', toastConfig)
             setProductModal(null)
@@ -30,6 +31,7 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
             return
         }
         try {
+            // updating product if all ok
             const { data } = await axios({
                 method: 'PUT',
                 headers: {
@@ -46,6 +48,7 @@ const ProductModal = ({ product, refetch, setProductModal }) => {
                 }
             })
             if (data.acknowledged) {
+                // if successfull refetcing to show the changes immediatly with toast
                 setUpdating(false)
                 refetch()
                 toast.success('Product edited successfully', toastConfig)

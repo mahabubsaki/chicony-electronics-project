@@ -2,6 +2,7 @@ import React from 'react';
 import { Circle, LayerGroup, MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
 const About = () => {
+    // used react leaflet 
     return (
         <div className="flex items-center flex-col sm:flex-row my-5">
             <div className="w-4/5 text-center sm:w-1/2 mx-auto">

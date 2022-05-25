@@ -31,6 +31,7 @@ const Login = () => {
         normalLoading,
         normalError,
     ] = useSignInWithEmailAndPassword(auth);
+    // this useeffect will keep user away from login page if he is logged in
     useEffect(() => {
         if (initialUser) {
             if (!googleUser || !normalUser) {
@@ -40,6 +41,7 @@ const Login = () => {
     }, [initialUser, normalUser, googleUser])
     useEffect(() => {
         if (googleUser) {
+            // token issueing
             const googleUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
@@ -48,6 +50,7 @@ const Login = () => {
                 localStorage.setItem('accessToken', data.token)
             }
             googleUserToken()
+            // saving user to db
             const saveGoogleUserDb = async () => {
                 await axios({
                     method: 'PUT',
@@ -60,6 +63,7 @@ const Login = () => {
             navigate(from)
         }
         else if (normalUser) {
+            // issueing token
             const normalUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
@@ -68,6 +72,7 @@ const Login = () => {
                 localStorage.setItem('accessToken', data.token)
             }
             normalUserToken()
+            // saving user to db
             const saveNormalUserDb = async () => {
                 await axios({
                     method: 'PUT',
@@ -80,11 +85,13 @@ const Login = () => {
             navigate(from)
         }
     }, [googleUser, normalUser])
+    // showing error
     useEffect(() => {
         if (actualError) {
             toast.error(actualError, toastConfig)
         }
     }, [actualError])
+    // setting error
     useEffect(() => {
         if (googleError) {
             setActualError('Something went wrong!')

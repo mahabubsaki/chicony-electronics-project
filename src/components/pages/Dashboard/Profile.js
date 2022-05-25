@@ -28,6 +28,7 @@ const Profile = () => {
     const [updateModal, setUpdateModal] = useState(false)
     const { data, isLoading, refetch } = useQuery(['profile', user], async () => {
         try {
+            // getting profile information with ausequerry with axios
             return await axios({
                 method: 'GET',
                 headers: {
@@ -52,6 +53,7 @@ const Profile = () => {
         <div className="min-h-[500px] flex justify-center">
             <div className="flex flex-col w-full sm:w-3/4 mx-auto">
                 <div className="flex justify-between items-center my-3">
+                    {/* conditionally showing user information */}
                     <h1 className="text-3xl">Welcome to Your Profile</h1>
                     {avatar && <div className="avatar online">
                         <div className="avatar">

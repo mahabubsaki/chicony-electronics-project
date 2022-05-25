@@ -6,6 +6,8 @@ import useAdminCheck from '../hooks/useAdminCheck';
 import Loading from './Loading';
 
 const RequireAdmin = ({ children }) => {
+    // this hook require admin for getting into child route
+
     const [user, loading] = useAuthState(auth);
     const { admin, adminLoading } = useAdminCheck(user?.email)
 

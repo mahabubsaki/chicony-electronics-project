@@ -17,6 +17,7 @@ const SingleProduct = () => {
     const [user, loading] = useAuthState(auth)
     const [error, setError] = useState('')
     const [quantityInput, setQuantityInput] = useState(0)
+    // checking if admin or user
     const { admin } = useAdminCheck(user?.email)
     const toastConfig = {
         position: "top-right",
@@ -27,8 +28,10 @@ const SingleProduct = () => {
         draggable: true,
         progress: undefined,
     }
+    // getting parametar by useparam
     const { productId } = useParams()
     const [processing, setProcessing] = useState(false)
+    // data loaded with usequery
     const { data, isLoading, refetch } = useQuery(['singleProduct-user', productId], async () => {
         try {
             return await axios({
@@ -47,7 +50,9 @@ const SingleProduct = () => {
             localStorage.removeItem('accessToken')
         }
     })
+    // destructuring usequery data
     const { img, name, available, id, minimum, price, description } = data?.data || {}
+    // on first page load setting qunatity input state to minimum quantity
     useEffect(() => {
         if (minimum) {
             setQuantityInput(minimum)
@@ -56,6 +61,7 @@ const SingleProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = ({ phone, address }) => {
         setProcessing(true)
+        // checking if it is not user
         if (admin) {
             toast.error('Admin can not place order', toastConfig)
             setProcessing(false)
@@ -63,6 +69,7 @@ const SingleProduct = () => {
             reset()
             return
         }
+        // some extra check if user somehow able to click purchase button with invalid or unwanted input
         if (isNaN(parseInt(quantityInput)) || quantityInput <= 0) {
             toast.error('Invalid Quantity Given', toastConfig)
             setProcessing(false)
@@ -85,6 +92,7 @@ const SingleProduct = () => {
             reset()
             return
         }
+        // asking confirmation
         Swal.fire({
             text: `Do you want order ${parseInt(quantityInput)} pieces ${name} for $${parseInt(quantityInput) * price}?`,
             icon: 'info',
@@ -98,6 +106,7 @@ const SingleProduct = () => {
             if (result.isConfirmed) {
                 const saveOrder = async () => {
                     try {
+                        // processing order if all ok
                         const { data } = await axios({
                             method: 'POST',
                             headers: {
@@ -119,6 +128,7 @@ const SingleProduct = () => {
                             url: `http://localhost:5000/add-order?current=${available - parseInt(quantityInput)}`
                         })
                         if (data.acknowledged) {
+                            // showing the actual data immediately if order saved in backend successfully
                             refetch()
                             setProcessing(false)
                             toast.success('Your Order Placed Successfully', toastConfig)
@@ -142,6 +152,7 @@ const SingleProduct = () => {
         setProcessing(false)
         reset()
     }
+    // this use effect will keep eye on quantityInput and show error if users input is incorrect
     useEffect(() => {
         if (quantityInput) {
             if (quantityInput < minimum) {
@@ -155,13 +166,13 @@ const SingleProduct = () => {
             }
         }
     }, [quantityInput, available, minimum])
+    // showing not found page if any user set invalid parameter in searchbox
     if (!data?.data) {
         return <NotFound></NotFound>
     }
     if (isLoading || loading) {
         return <Loading></Loading>
     }
-    console.log(quantityInput);
     return (
         <div className="min-h-[500px] grid gap-2 grid-cols-1 md:grid-cols-2">
             <div className="flex justify-center items-center">

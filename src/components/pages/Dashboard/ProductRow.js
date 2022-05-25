@@ -26,6 +26,7 @@ const ProductRow = ({ product, no, refetch }) => {
     } = product;
     const handleCancelOrder = async () => {
         Swal.fire({
+            // while canceling asking for a confirmation
             text: 'Are you sure you want to cancel this order?',
             icon: 'error',
             title: "Cancel Order",
@@ -37,6 +38,7 @@ const ProductRow = ({ product, no, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
+                    // if confirmed deleting order from database
                     const deleteProduct = async () => {
                         const { data } = await axios({
                             method: 'DELETE',

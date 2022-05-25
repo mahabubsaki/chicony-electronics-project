@@ -20,9 +20,12 @@ const Register = () => {
         draggable: true,
         progress: undefined,
     }
+    // using a state for getting actual name input value to save into our database
     const [normalName, setNormalName] = useState('')
     const [resetModal, setResetModal] = useState(false)
+    // error will be set up here and accordingly this toast willl be shown
     const [actualError, setActualError] = useState('')
+    // form validation checking with yup
     const formSchema = Yup.object().shape({
         confirm: Yup.string()
             .oneOf([Yup.ref('password')], 'Passwords does not match')
@@ -42,6 +45,7 @@ const Register = () => {
             .min(5, "Full Name is too short")
             .max(20, "Full Name is too long")
     })
+    // setting up yup in react hook form
     const formOptions = { resolver: yupResolver(formSchema) }
     const { register, handleSubmit, formState: { errors } } = useForm(formOptions);
     const onSubmit = async ({ fullName, email, password }) => {
@@ -73,6 +77,7 @@ const Register = () => {
     }, [initialUser, normalUser, googleUser])
     useEffect(() => {
         if (googleUser) {
+            // issueing token if any google user found
             const googleUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
@@ -81,6 +86,7 @@ const Register = () => {
                 localStorage.setItem('accessToken', data.token)
             }
             googleUserToken()
+            // saving google user to database
             const saveGoogleUserDb = async () => {
                 await axios({
                     method: 'PUT',
@@ -93,6 +99,7 @@ const Register = () => {
             navigate('/')
         }
         else if (normalUser) {
+            // issuing normal user a  token
             const normalUserToken = async () => {
                 const { data } = await axios({
                     method: 'GET',
@@ -101,6 +108,7 @@ const Register = () => {
                 localStorage.setItem('accessToken', data.token)
             }
             normalUserToken()
+            // saving normal user to database
             const saveNormalUserDb = async () => {
                 await axios({
                     method: 'PUT',
@@ -113,6 +121,7 @@ const Register = () => {
             navigate('/')
         }
     }, [googleUser, normalUser])
+    // this error will set error accordingly react firbase hook error
     useEffect(() => {
         if (googleError) {
             setActualError('Something went wrong!')
@@ -129,6 +138,7 @@ const Register = () => {
             setActualError('')
         }
     }, [googleError, normalError])
+    // this will show the toast
     useEffect(() => {
         if (actualError) {
             toast.error(actualError, toastConfig)

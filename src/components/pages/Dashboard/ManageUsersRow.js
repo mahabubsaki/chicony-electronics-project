@@ -25,6 +25,7 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
         draggable: true,
         progress: undefined,
     }
+    // here asked for both case if admin want to change the role with a confirmation
     const handleMakeAdmin = async () => {
         Swal.fire({
             text: "Are you sure you want to change this user's role to admin?",
@@ -38,6 +39,7 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
+                    // if confirmation is ok trying to change the role
                     const changeRole = async () => {
                         setChanging(true)
                         const { data } = await axios({
@@ -50,6 +52,7 @@ const ManageUsersRow = ({ eachUser, no, refetch, setChanging }) => {
 
                         })
                         if (data.acknowledged) {
+                            // showing toast if changes made successfully
                             toast.success('Successfully changed role to Admin', toastConfig)
                             refetch()
                             setChanging(false)

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const IsVarified = () => {
+    // simple alert under navbar if user is not varified
     return (
         <div className="alert alert-error shadow-lg rounded-none">
             <div>

@@ -5,6 +5,7 @@ import { FcBusinessman } from 'react-icons/fc'
 import { MdFeedback, MdProductionQuantityLimits } from 'react-icons/md'
 
 const Summary = () => {
+    // used react counup here
     return (
         <>
             <div>

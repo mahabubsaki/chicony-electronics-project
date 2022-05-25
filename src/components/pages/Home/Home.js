@@ -7,6 +7,7 @@ import Reviews from './Reviews';
 import Summary from './Summary';
 
 const Home = () => {
+    // homepage have 8 section with navbar and footer
     return (
         <div>
             <Banner></Banner>

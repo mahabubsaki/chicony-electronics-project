@@ -5,6 +5,7 @@ import Loading from '../../utilities/Loading';
 import Product from '../Home/Product';
 
 const AllProducts = () => {
+    // homepage have a limit of 6 products so all products showen will be here
     const { data, isLoading } = useQuery('all-products', async () => {
         return await axios({
             method: 'GET',

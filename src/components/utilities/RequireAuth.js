@@ -5,6 +5,7 @@ import auth from '../firebase.init';
 import Loading from './Loading';
 
 const RequireAuth = ({ children }) => {
+    // this hook will keep away thos user to enter into its child if user is not logged in
     const [user, loading] = useAuthState(auth)
     let location = useLocation();
 

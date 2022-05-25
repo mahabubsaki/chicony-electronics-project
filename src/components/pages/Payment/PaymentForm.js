@@ -28,6 +28,7 @@ const PaymentFrom = ({ product }) => {
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('')
     const [loading, setLoading] = useState(false)
+    // setting client secret and creating payment intent with page first time load
     useEffect(() => {
         const createPaymentIntent = async () => {
             try {
@@ -72,12 +73,13 @@ const PaymentFrom = ({ product }) => {
                 address: { postal_code: '90210' }
             },
         });
-
+        // showing toast if any error occur
         if (error) {
             setLoading(false)
             toast.error(error.message, toastConfig)
             return
         }
+        // setting up billing details 
         const { paymentIntent, error1 } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -91,6 +93,7 @@ const PaymentFrom = ({ product }) => {
                 },
             },
         );
+        // showing toast if any error occur
         if (error1) {
             setLoading(false)
             toast.error(error1?.message, toastConfig)
@@ -98,6 +101,7 @@ const PaymentFrom = ({ product }) => {
         }
         if (!error1) {
             try {
+                // if all is ok then setting status of order to paid
                 const { data } = await axios({
                     method: 'PUT',
                     data: {
@@ -111,6 +115,7 @@ const PaymentFrom = ({ product }) => {
                     }
                 })
                 if (data.acknowledged) {
+                    // if all ok navigating to order page with toast
                     setLoading(false)
                     toast.success('Your payment recieved successfully', toastConfig)
                     navigate('/dashboard/orders')

@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { signOut } from 'firebase/auth';
 
 const Payment = () => {
+    // setting stripe key to stripepromise
     const [stripePromise, setStripePromise] = useState(() => loadStripe('pk_test_51L1169ERhNvrJqfb95HV9RKyiSyhJkiwMPJYAf2sSsVKGTedSm0qr1heEwq7sYvOIaxWlI0DrmorUQzk40ekn3Nh00Cfe6cxc8'))
     const navigate = useNavigate()
     const toastConfig = {
@@ -27,6 +28,7 @@ const Payment = () => {
         progress: undefined,
     }
     const [user, loading] = useAuthState(auth)
+    // loading payment page with parameter
     const { orderId } = useParams()
     const { data, isLoading } = useQuery(['order-payment-user', orderId], async () => {
         try {
