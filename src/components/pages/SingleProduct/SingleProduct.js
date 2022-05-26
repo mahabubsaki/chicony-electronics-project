@@ -167,9 +167,9 @@ const SingleProduct = () => {
         }
     }, [quantityInput, available, minimum])
     // showing not found page if any user set invalid parameter in searchbox
-    if (!data?.data) {
-        return <NotFound></NotFound>
-    }
+    // if (!data?.data) {
+    //     return <NotFound></NotFound>
+    // }
     if (isLoading || loading) {
         return <Loading></Loading>
     }

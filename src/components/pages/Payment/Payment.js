@@ -49,9 +49,9 @@ const Payment = () => {
         }
     })
     const { productName, productImg, cost, phone, address, quantity } = data?.data || {}
-    if (!data?.data) {
-        return <NotFound></NotFound>
-    }
+    // if (!data?.data) {
+    //     return <NotFound></NotFound>
+    // }
     if (loading || isLoading) {
         return <Loading></Loading>
     }
