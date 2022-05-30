@@ -1,5 +1,11 @@
 # Chicony Electronics
 
+# Admin Creedintial
+
+## Email : admin@admin.com
+
+## Password : @Admin12
+
 ## This project was completed by [Mahabub Saki](https://www.facebook.com/mahabubsaki/)
 
 ## [Live site link](https://chicony-electronics.web.app/)
